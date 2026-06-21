@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 326) rotate(90) scale(190 170)">
+      <stop stop-color="#FF8A00" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#FF8A00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="outer" x1="180" y1="86" x2="335" y2="409" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFB21B"/>
+      <stop offset="0.28" stop-color="#FF7A00"/>
+      <stop offset="0.72" stop-color="#F05A08"/>
+      <stop offset="1" stop-color="#C52A05"/>
+    </linearGradient>
+    <linearGradient id="mid" x1="216" y1="166" x2="295" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE86A"/>
+      <stop offset="0.48" stop-color="#FFC233"/>
+      <stop offset="1" stop-color="#FF8C1A"/>
+    </linearGradient>
+    <linearGradient id="inner" x1="245" y1="242" x2="277" y2="431" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF478"/>
+      <stop offset="0.56" stop-color="#FFD34D"/>
+      <stop offset="1" stop-color="#FFA33A"/>
+    </linearGradient>
+    <filter id="soft" x="62" y="22" width="388" height="455" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="22" stdDeviation="28" flood-color="#FF5A00" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" fill="none"/>
+  <ellipse cx="256" cy="348" rx="190" ry="150" fill="url(#glow)"/>
+
+  <g filter="url(#soft)">
+    <path d="M257 55C347 137 377 231 353 307C338 353 307 390 256 442C193 386 151 333 141 276C131 219 157 170 203 117C209 174 230 208 258 225C236 166 231 105 257 55Z" fill="url(#outer)"/>
+    <path d="M246 154C306 214 328 284 304 340C293 367 276 392 253 425C213 385 190 340 192 298C194 249 220 211 246 154Z" fill="url(#mid)" opacity="0.92"/>
+    <path d="M267 236C304 287 302 348 257 430C220 381 215 329 236 286C246 266 257 250 267 236Z" fill="url(#inner)"/>
+  </g>
+</svg>
