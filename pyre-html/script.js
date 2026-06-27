@@ -2,85 +2,87 @@ const streakText = document.getElementById("streakText");
 const flame = document.getElementById("flame");
 const timerDisplay = document.getElementById("timerDisplay");
 
+
 const startButton = document.getElementById("start");
-const pauseButton = document.getElementById("pause");
 const stopButton = document.getElementById("stop");
+const pauseButton = document.getElementById("pause");
 const durationButtons = document.querySelectorAll(".botaoDuracao");
 
 const adicionarTask = document.getElementById("adicionarTask");
 const taskList = document.getElementById("taskList");
 const historyList = document.getElementById("historyList");
 
-let selectedMinutes = 0.2;
-let remainingSeconds = selectedMinutes * 60;
-let timerInterval = null;
-let isRunning = false;
+let tempoSelecionado = 25;
+let segundosRestantes = tempoSelecionado * 60;
+let rodando = false;
+let timer = null;
 
-function updateTimerDisplay() {
-  const minutes = Math.floor(remainingSeconds / 60);
-  const seconds = remainingSeconds % 60;
 
-  timerDisplay.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+function atualizarDisplay() {
+    const minutos = Math.floor(segundosRestantes / 60);
+    const segundos = segundosRestantes % 60;
+
+    timerDisplay.textContent = `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
 }
 
-function tickTimer() {
-  remainingSeconds -= 1;
-  updateTimerDisplay();
+function temporizador() {
+    segundosRestantes -= 1;
+    atualizarDisplay();
 
-  if (remainingSeconds <= 0) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    isRunning = false;
-    alert("Runfou");
-  }
+    if (segundosRestantes <= 0) {
+        clearInterval(timer);
+        rodando = false;
+        timer = null;
+        alert("funcionou");
+    }
 }
 
-function startTimer() {
-  if (isRunning) return;
+function startTemporizador() {
+    if (rodando) return;
 
-  if (remainingSeconds <= 0) {
-    remainingSeconds = selectedMinutes * 60;
-  }
+    if (segundosRestantes <= 0) {
+        segundosRestantes = tempoSelecionado * 60;
+    }
 
-  isRunning = true;
-  timerInterval = setInterval(tickTimer, 1000);
+    rodando = true;
+    timer = setInterval(temporizador, 1000);
 }
 
-function pauseTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-  isRunning = false;
+function pauseTemporizador() {
+    clearInterval(timer);
+    timer = null;
+    rodando = false;
 }
 
-function stopTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-  isRunning = false;
-  remainingSeconds = selectedMinutes * 60;
-  updateTimerDisplay();
+function stopTemporizador() {
+    clearInterval(timer);
+    rodando = false;
+    timer = null;
+    segundosRestantes = tempoSelecionado * 60;
+    atualizarDisplay();
 }
 
-function selectDuration(minutes) {
-  if (isRunning) return;
+function selecionarDuracao(minutos) {
+    if (rodando) return;
 
-  selectedMinutes = minutes;
-  remainingSeconds = selectedMinutes * 60;
-  updateTimerDisplay();
+    tempoSelecionado = minutos;
+    segundosRestantes = tempoSelecionado * 60;
+    atualizarDisplay();
 }
 
-function handleDurationButtonClick(event) {
-  const button = event.target;
-  const minutes = Number(button.textContent);
+function manterBotaoDuracao(event) {
+    const button = event.target;
+    const minutos = Number(button.textContent);
 
-  selectDuration(minutes);
+    selecionarDuracao(minutos);
 }
 
-startButton.addEventListener("click", startTimer);
-pauseButton.addEventListener("click", pauseTimer);
-stopButton.addEventListener("click", stopTimer);
+startButton.addEventListener("click", startTemporizador);
+pauseButton.addEventListener("click", pauseTemporizador);
+stopButton.addEventListener("click", stopTemporizador);
 
-for (let i = 0; i < durationButtons.length; i++) {
-  durationButtons[i].addEventListener("click", handleDurationButtonClick);
-}
+durationButtons.forEach(function(button) {
+  button.addEventListener("click", manterBotaoDuracao);
+});
 
-updateTimerDisplay();
+atualizarDisplay();
