@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pyre</title>
+    <title>Pyre - Cronometro</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <main>
         <header class="app-header">
             <h1>PYRE</h1>
-        <nav class="mode-nav">
-                <a class="mode-button" href="index.html">Temporizador</a>
-                <a class="mode-button active" href="cronometro.html">Cronometro</a>
-        </nav>
-            <div class="header-actions">
-                <p id="streakText">0 dias</p>
-            </div>
+            <nav class="header-actions">
+                <a href="index.html">Temporizador</a>
+                <a class="active" href="cronometro.html">Cronometro</a>
+            </nav>
         </header>
 
         <section class="sectionFoco">
@@ -28,14 +25,6 @@
                 <button id="start">start</button>
                 <button id="pause">pause</button>
                 <button id="stop">stop</button>
-            </div>
-        </section>
-        <section class="sectionTasks">
-            <h2>Tarefas</h2>
-            <div class="taskform">
-                <input id="taskInput" class="taskinput" type="text" placeholder="No que voce vai focar?">
-                <button id="adicionarTask">Adicionar</button>
-                <ul id="taskList"></ul>
             </div>
         </section>
     </main>

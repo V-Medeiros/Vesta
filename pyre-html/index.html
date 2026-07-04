@@ -10,22 +10,23 @@
     <main>
         <header class="app-header">
             <h1>PYRE</h1>
-            <div class="header-actions">
-                <a href="stats.html">Meses</a>
-                <p id="streakText">0 dias</p>
-            </div>
+            <nav class="header-actions">
+                <a class="active" href="index.html">Temporizador</a>
+                <a href="cronometro.html">Cronometro</a>
+            </nav>
         </header>
 
         <section class="sectionFoco">
             <img class="flame-image" id="flame" src="assets/flame.svg" alt="Chama do Pyre" />
 
-            <strong id="timerDisplay">00:00</strong>
+            <strong id="timerDisplay">15:00</strong>
 
             <div class="duracao">
                 <button class="botaoDuracao">15</button>
                 <button class="botaoDuracao">30</button>
                 <button class="botaoDuracao">45</button>
                 <button class="botaoDuracao">60</button>
+                <button class="botaoDuracao">120</button>
             </div>
 
             <div class="timerControl">
@@ -33,21 +34,6 @@
                 <button id="pause">pause</button>
                 <button id="stop">stop</button>
             </div>
-        </section>
-
-        <section class="sectionTasks">
-            <h2>Tarefas</h2>
-            <div class="taskform">
-                <input id="taskInput" class="taskinput" type="text" placeholder="No que voce vai focar?">
-                <button id="adicionarTask">Adicionar</button>
-                <ul id="taskList"></ul>
-            </div>
-        </section>
-
-        <section class="history-section">
-            <h2>Ultimos 14 dias</h2>
-            <div id="historyList" class="history-list"></div>
-            <div id="daySessions" class="day-sessions"></div>
         </section>
     </main>
 
