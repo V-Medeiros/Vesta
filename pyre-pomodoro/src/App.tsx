@@ -1,4 +1,4 @@
-import { CirclePauseIcon, CogIcon, FlameKindling, HistoryIcon, HomeIcon, MoonIcon, PlayIcon, PlusIcon, SquareIcon } from 'lucide-react';
+import { CirclePauseIcon, CogIcon, FlameKindling, HistoryIcon, HomeIcon, MoonIcon, PlayIcon, SquareIcon } from 'lucide-react';
 import './App.css';
 import { Container } from './components/Container';
 import { Heading } from './components/Heading';
@@ -7,7 +7,6 @@ export function App() {
   return (
     <>
     {/*HEADER */}
-
       <section>
         <Container>
           <Heading>
@@ -21,7 +20,8 @@ export function App() {
 
     {/*MENU */}
       <section>
-        <Container contentClassName='Menu'>
+        <Container>
+          <div className='Menu'>
           <button className='menu-button'>
             <HomeIcon className='button-menu' />
           </button>
@@ -34,8 +34,10 @@ export function App() {
           <button className='menu-button'>
             <MoonIcon className='button-menu' />
           </button>
+          </div>
         </Container>
       </section>
+
     {/* TIMER */}
       <section>
         <Container>
@@ -45,24 +47,11 @@ export function App() {
 
     {/* TASK */}
       <section>
-        <Container contentClassName='TaskPanel'>
-          <div className='TaskHeader'>Tasks</div>
-          <form className='TaskInputGroup'>
-            <input
-              className='TaskInput'
-              type='text'
-              placeholder='Add a focus task'
-              aria-label='Add a focus task'
-            />
-            <button className='TaskAddButton' type='button' aria-label='Add task'>
-              <PlusIcon className='TaskAddIcon' />
-            </button>
-          </form>
-        </Container>
+        <Container>task input</Container>
       </section>
-    
       <section>
-        <Container contentClassName='Menu'>
+        <Container>
+          <div className='Menu'>
           <button className='menu-button'>
             <PlayIcon className='button-menu' />
           </button>
@@ -72,13 +61,11 @@ export function App() {
           <button className='menu-button'>
             <SquareIcon className='button-menu' />
           </button>
+          </div>
         </Container>
       </section>
 
-      <section>
-        <Container>crontroller</Container>
-      </section>
-
+    {/* FOOTER */}
       <section>
         <Container>Footer</Container>
       </section>
