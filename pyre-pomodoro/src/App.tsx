@@ -1,11 +1,14 @@
-import { CirclePauseIcon, CogIcon, FlameKindling, HistoryIcon, HomeIcon, MoonIcon, PlayIcon, SquareIcon } from 'lucide-react';
+import { FlameKindling } from 'lucide-react';
 import './App.css';
 import { Container } from './components/Container';
 import { Heading } from './components/Heading';
+import { Menu } from './components/Menu';
+import { Controller } from './components/Controller';
+import { FocusFlame } from './components/FocusFlame';
 
 export function App() {
   return (
-    <>
+    <div className='app'>
     {/*HEADER */}
       <section>
         <Container>
@@ -21,20 +24,14 @@ export function App() {
     {/*MENU */}
       <section>
         <Container>
-          <div className='Menu'>
-          <button className='menu-button'>
-            <HomeIcon className='button-menu' />
-          </button>
-          <button className='menu-button'>
-            <CogIcon className='button-menu' />
-          </button>
-          <button className='menu-button'>
-            <HistoryIcon className='button-menu' />
-          </button>
-          <button className='menu-button'>
-            <MoonIcon className='button-menu' />
-          </button>
-          </div>
+          <Menu/>
+        </Container>
+      </section>
+
+    {/* FLAME */}
+      <section>
+        <Container>
+          <FocusFlame/>
         </Container>
       </section>
 
@@ -45,30 +42,28 @@ export function App() {
         </Container>
       </section>
 
+    {/* CONTROLLER */}
+      <section>
+      <Controller/>
+      </section>
+      
     {/* TASK */}
       <section>
         <Container>task input</Container>
       </section>
-      <section>
-        <Container>
-          <div className='Menu'>
-          <button className='menu-button'>
-            <PlayIcon className='button-menu' />
-          </button>
-          <button className='menu-button'>
-            <CirclePauseIcon className='button-menu' />
-          </button>
-          <button className='menu-button'>
-            <SquareIcon className='button-menu' />
-          </button>
-          </div>
-        </Container>
-      </section>
+      
 
+    
     {/* FOOTER */}
       <section>
-        <Container>Footer</Container>
+        <Container>
+          <footer className='app-footer'>
+            <span className='footer-brand'>PYRE</span>
+            <span className='footer-divider' />
+            <span className='footer-copy'>One spark at a time.</span>
+          </footer>
+        </Container>
       </section>
-    </>
+    </div>
   );
 }
