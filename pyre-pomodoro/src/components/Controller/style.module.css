@@ -26,3 +26,8 @@
   color: black;
 }
 
+
+.buttonController:hover{
+  filter:  brightness(80%);
+  transition: all 0.2s ease-in-out;
+}

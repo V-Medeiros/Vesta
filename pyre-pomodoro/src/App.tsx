@@ -5,6 +5,7 @@ import { Heading } from './components/Heading';
 import { Menu } from './components/Menu';
 import { Controller } from './components/Controller';
 import { FocusFlame } from './components/FocusFlame';
+import { CountDown } from './components/CountDown';
 
 export function App() {
   return (
@@ -36,9 +37,9 @@ export function App() {
       </section>
 
     {/* TIMER */}
-      <section>
+      <section className='timer-section'>
         <Container>
-          <div className='Timer'>00:00</div>
+          <CountDown />
         </Container>
       </section>
 
