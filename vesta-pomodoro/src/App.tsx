@@ -7,6 +7,7 @@ import { Controller } from './components/Controller';
 import { FocusFlame } from './components/FocusFlame';
 import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
+import { Cycle } from './components/Cycle';
 
 export function App() {
   return (
@@ -60,6 +61,11 @@ export function App() {
         </Container>
       </section>
 
+    <section>
+        <div className='formRow'>
+          <Cycle/>
+        </div>
+    </section>
 
 
       {/* FOOTER */}
