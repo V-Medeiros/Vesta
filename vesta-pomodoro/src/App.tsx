@@ -6,11 +6,13 @@ import { Menu } from './components/Menu';
 import { Controller } from './components/Controller';
 import { FocusFlame } from './components/FocusFlame';
 import { CountDown } from './components/CountDown';
+import { DefaultInput } from './components/DefaultInput';
+import { Cycle } from './components/Cycle';
 
 export function App() {
   return (
     <div className='app'>
-    {/*HEADER */}
+      {/*HEADER */}
       <section>
         <Container>
           <Heading>
@@ -22,46 +24,51 @@ export function App() {
         </Container>
       </section>
 
-    {/*MENU */}
+      {/*MENU */}
       <section>
         <Container>
-          <Menu/>
+          <Menu />
         </Container>
       </section>
 
-    {/* FLAME */}
+      {/* FLAME */}
       <section>
         <Container>
-          <FocusFlame/>
+          <FocusFlame />
         </Container>
       </section>
 
-    {/* TIMER */}
+      {/* TIMER */}
       <section className='timer-section'>
         <Container>
           <CountDown />
         </Container>
       </section>
 
-    {/* CONTROLLER */}
+      {/* CONTROLLER */}
       <section>
-      <Controller/>
+        <Controller />
       </section>
-      
-    {/* TASK */}
+
+      {/* TASK */}
       <section>
         <Container>
           <form className='form' action=''>
             <div className='formRow'>
-
+              <DefaultInput type='text' id='inputTask' labelText='task' />
             </div>
           </form>
         </Container>
       </section>
-      
 
-    
-    {/* FOOTER */}
+    <section>
+        <div className='formRow'>
+          <Cycle/>
+        </div>
+    </section>
+
+
+      {/* FOOTER */}
       <section>
         <Container>
           <footer className='app-footer'>

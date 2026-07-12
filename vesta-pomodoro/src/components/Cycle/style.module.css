@@ -1,0 +1,35 @@
+.cycleDot{
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50% ;
+}
+
+.focus{
+  background-color: var(--primary);
+}
+
+
+.shortBreak{
+  background-color: var(--secondary);
+}
+
+
+.longBreak{
+  background-color: var(--terceary);
+}
+
+
+.cycleDots{
+  display: flex;
+  align-items: center;
+  gap: 0.8rem ;
+  margin-top: 1rem;
+}
+
+.cycleText{
+  font-size: 1rem;
+  margin-top: -0.8rem;
+  font-weight: 400;
+}

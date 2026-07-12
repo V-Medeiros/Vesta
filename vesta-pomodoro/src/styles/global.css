@@ -33,9 +33,6 @@ p {
   color: #e8540a;
 }
 
-.Timer{
-  font-size: 8.0rem;
-}
 
 .form{
   justify-content: center;
@@ -54,19 +51,4 @@ p {
   margin-top: 1.8rem;
 }
 
-.taskLabel {
-  color: var(--muted);
-  font-size: 1.2rem;
-}
 
-.inputTask{
-  text-align: center;
-  width: min(100%, 360px);
-  padding: 0.8rem 1rem;
-  border: 2px solid var(--primary);
-  border-radius: 8px;
-  background: transparent;
-  color: var(--text);
-  font: inherit;
-  font-size: 1rem;
-}
