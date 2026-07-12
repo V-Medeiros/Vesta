@@ -50,7 +50,13 @@ export function App() {
       
     {/* TASK */}
       <section>
-        <Container>task input</Container>
+        <Container>
+          <form className='form' action=''>
+            <div className='formRow'>
+
+            </div>
+          </form>
+        </Container>
       </section>
       
 
