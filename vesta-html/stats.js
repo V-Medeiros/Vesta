@@ -3,7 +3,7 @@ const sessions = loadSessions();
 
 function loadSessions() {
     try {
-        return JSON.parse(localStorage.getItem("pyre_sessions")) || [];
+        return JSON.parse(localStorage.getItem("vesta_sessions")) || [];
     } catch (error) {
         console.warn("Nao foi possivel carregar as sessoes.", error);
         return [];

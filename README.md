@@ -1,8 +1,8 @@
-# PYRE
+# VESTA
 
 ## Sobre o projeto
 
-Pyre e um SaaS de produtividade gamificado baseado em sessoes de foco, tarefas e acompanhamento de consistencia. A ideia principal e registrar o tempo focado de forma visual: cada sessao concluida contribui para a evolucao da chama, para o streak diario e para o historico de progresso.
+Vesta e um SaaS de produtividade gamificado baseado em sessoes de foco, tarefas e acompanhamento de consistencia. A ideia principal e registrar o tempo focado de forma visual: cada sessao concluida contribui para a evolucao da chama, para o streak diario e para o historico de progresso.
 
 O produto fica entre aplicativos de foco, rastreadores de habito e experiencias gamificadas leves. A proposta nao e criar um RPG completo nem um gerenciador de tarefas complexo, mas sim um ritual simples, visual e recompensador para manter consistencia.
 
@@ -16,7 +16,7 @@ O produto fica entre aplicativos de foco, rastreadores de habito e experiencias 
 
 ## Publico-alvo
 
-Pyre foi pensado para estudantes, desenvolvedores, profissionais criativos e pessoas que querem construir consistencia sem transformar produtividade em pressao.
+Vesta foi pensado para estudantes, desenvolvedores, profissionais criativos e pessoas que querem construir consistencia sem transformar produtividade em pressao.
 
 
 ## Funcionalidades do MVP
@@ -34,7 +34,7 @@ Pyre foi pensado para estudantes, desenvolvedores, profissionais criativos e pes
 
 ### Chama animada
 
-A chama e o elemento visual central do Pyre. Ela muda de aparencia conforme o estado da sessao e o nivel de streak.
+A chama e o elemento visual central do Vesta. Ela muda de aparencia conforme o estado da sessao e o nivel de streak.
 
 Estados previstos:
 
@@ -98,7 +98,7 @@ No MVP:
 
 ## Design
 
-O Pyre deve parecer escuro, concentrado e vivo. A interface deve valorizar contraste, silencio visual e movimento controlado.
+O Vesta deve parecer escuro, concentrado e vivo. A interface deve valorizar contraste, silencio visual e movimento controlado.
 
 ### Buscar
 
@@ -137,10 +137,10 @@ No MVP, os dados ficam no navegador usando `localStorage`.
 
 | Entidade | Chave | Campos principais |
 | --- | --- | --- |
-| Tarefas | `pyre_tasks` | `id`, `text`, `completed`, `sessionsCount`, `createdAt`, `updatedAt` |
-| Sessoes | `pyre_sessions` | `id`, `date`, `durationMinutes`, `taskId`, `status`, `startedAt`, `endedAt` |
-| Streak | `pyre_streak` | `current`, `lastSessionDate`, `longestEver` |
-| Configuracoes | `pyre_settings` | `defaultDuration`, `soundEnabled` |
+| Tarefas | `vesta_tasks` | `id`, `text`, `completed`, `sessionsCount`, `createdAt`, `updatedAt` |
+| Sessoes | `vesta_sessions` | `id`, `date`, `durationMinutes`, `taskId`, `status`, `startedAt`, `endedAt` |
+| Streak | `vesta_streak` | `current`, `lastSessionDate`, `longestEver` |
+| Configuracoes | `vesta_settings` | `defaultDuration`, `soundEnabled` |
 
 Exemplo de sessao:
 
@@ -211,7 +211,7 @@ O MVP sera considerado bem-sucedido se:
 
 ## Evolucao futura com backend
 
-Apos o MVP, o Pyre pode evoluir para uma arquitetura SaaS com backend. Nessa fase, Spring Boot passa a ser uma boa opcao para autenticar usuarios, sincronizar dados entre dispositivos, persistir sessoes em banco de dados e preparar recursos pagos.
+Apos o MVP, o Vesta pode evoluir para uma arquitetura SaaS com backend. Nessa fase, Spring Boot passa a ser uma boa opcao para autenticar usuarios, sincronizar dados entre dispositivos, persistir sessoes em banco de dados e preparar recursos pagos.
 
 Uma stack futura possivel:
 

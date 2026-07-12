@@ -1,8 +1,8 @@
 const STORAGE_KEYS = {
-    tasks: "pyre_tasks",
-    sessions: "pyre_sessions",
-    streak: "pyre_streak",
-    settings: "pyre_settings",
+    tasks: "vesta_tasks",
+    sessions: "vesta_sessions",
+    streak: "vesta_streak",
+    settings: "vesta_settings",
 };
 
 const streakText = document.getElementById("streakText");

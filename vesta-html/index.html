@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pyre</title>
+    <title>Vesta</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <main>
         <header class="app-header">
-            <h1>PYRE</h1>
-        <nav class="mode-nav">
-                <a class="mode-button" href="index.html">Temporizador</a>
-                <a class="mode-button active" href="cronometro.html">Cronometro</a>
-        </nav>
+            <h1>VESTA</h1>
             <div class="header-actions">
+                <a href="stats.html">Meses</a>
                 <p id="streakText">0 dias</p>
             </div>
         </header>
 
         <section class="sectionFoco">
-            <img class="flame-image" id="flame" src="assets/flame.svg" alt="Chama do Pyre" />
+            <img class="flame-image" id="flame" src="assets/flame.svg" alt="Chama do Vesta" />
 
             <strong id="timerDisplay">00:00</strong>
+
+            <div class="duracao">
+                <button class="botaoDuracao">15</button>
+                <button class="botaoDuracao">30</button>
+                <button class="botaoDuracao">45</button>
+                <button class="botaoDuracao">60</button>
+            </div>
 
             <div class="timerControl">
                 <button id="start">start</button>
@@ -30,6 +34,7 @@
                 <button id="stop">stop</button>
             </div>
         </section>
+
         <section class="sectionTasks">
             <h2>Tarefas</h2>
             <div class="taskform">
@@ -38,8 +43,14 @@
                 <ul id="taskList"></ul>
             </div>
         </section>
+
+        <section class="history-section">
+            <h2>Ultimos 14 dias</h2>
+            <div id="historyList" class="history-list"></div>
+            <div id="daySessions" class="day-sessions"></div>
+        </section>
     </main>
 
-    <script src="cronometro.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
