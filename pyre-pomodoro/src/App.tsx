@@ -17,7 +17,7 @@ export function App() {
             <button className='logo-button'>
               <FlameKindling className='logo-icon' />
             </button>
-            PYRE
+            VESTA
           </Heading>
         </Container>
       </section>
@@ -65,7 +65,7 @@ export function App() {
       <section>
         <Container>
           <footer className='app-footer'>
-            <span className='footer-brand'>PYRE</span>
+            <span className='footer-brand'>VESTA</span>
             <span className='footer-divider' />
             <span className='footer-copy'>One spark at a time.</span>
           </footer>

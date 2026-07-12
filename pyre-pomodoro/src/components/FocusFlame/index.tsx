@@ -1,4 +1,4 @@
-import flameImage from '../../assets/pyre-flame-symbol-redesign-512.png';
+import flameImage from '../../assets/vesta-flame-symbol-redesign-512.png';
 import styles from './style.module.css';
 
 export function FocusFlame() {
