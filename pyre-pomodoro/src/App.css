@@ -8,6 +8,10 @@
   background: var(--background);
 }
 
+.timer-section {
+  margin-top: -2rem;
+}
+
 h1 {
   margin: 0;
   letter-spacing: 7px;
@@ -24,10 +28,12 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 20px;
   color: rgba(255, 255, 255, 0.58);
   font-size: 0.9rem;
   font-weight: 700;
+  
+  
 }
 
 .footer-brand {

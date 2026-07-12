@@ -5,6 +5,7 @@ import { Heading } from './components/Heading';
 import { Menu } from './components/Menu';
 import { Controller } from './components/Controller';
 import { FocusFlame } from './components/FocusFlame';
+import { CountDown } from './components/CountDown';
 
 export function App() {
   return (
@@ -16,7 +17,7 @@ export function App() {
             <button className='logo-button'>
               <FlameKindling className='logo-icon' />
             </button>
-            PYRE
+            VESTA
           </Heading>
         </Container>
       </section>
@@ -36,9 +37,9 @@ export function App() {
       </section>
 
     {/* TIMER */}
-      <section>
+      <section className='timer-section'>
         <Container>
-          <div className='Timer'>00:00</div>
+          <CountDown />
         </Container>
       </section>
 
@@ -49,7 +50,13 @@ export function App() {
       
     {/* TASK */}
       <section>
-        <Container>task input</Container>
+        <Container>
+          <form className='form' action=''>
+            <div className='formRow'>
+
+            </div>
+          </form>
+        </Container>
       </section>
       
 
@@ -58,7 +65,7 @@ export function App() {
       <section>
         <Container>
           <footer className='app-footer'>
-            <span className='footer-brand'>PYRE</span>
+            <span className='footer-brand'>VESTA</span>
             <span className='footer-divider' />
             <span className='footer-copy'>One spark at a time.</span>
           </footer>
