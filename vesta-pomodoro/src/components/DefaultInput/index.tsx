@@ -1,14 +1,14 @@
 import styles from './style.module.css';
 
 type InputProps = {
-  type: 'text' | 'number' | 'search';
-};
+  id: string;
+  labelText?: string;
+} & React.ComponentProps<'input'>;
 
-export function Input({ type }: InputProps) {
+export function DefaultInput({ type, id, labelText, ...rest }: InputProps) {
   return (
-    <label className={styles.input} htmlFor="inputTask">
-      task
-      <input id="inputTask" type={type} placeholder="What drives you today?" />
+    <label className={styles.label} htmlFor={id}> {labelText}
+      <input className={styles.input} id={id} type={type} {...rest} placeholder="What drives you today?" />
     </label>
   );
 }
