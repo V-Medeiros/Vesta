@@ -217,7 +217,7 @@ Uma stack futura possivel:
 
 - Frontend: React + TypeScript.
 - Backend: Spring Boot.
-- Banco de dados: PostgreSQL.
+- Banco de dados: MySQL.
 - Autenticacao: Spring Security com JWT ou login social.
 - Deploy: frontend em Vercel/Netlify e backend em Render, Railway, Fly.io ou AWS.
 
