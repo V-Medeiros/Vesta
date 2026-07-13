@@ -1,8 +1,17 @@
 .container {
-  font-size: clamp(6rem, 30vw, 8rem);
+  color: var(--text);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
   text-align: center;
-  font-weight: bold;
-  line-height: 1.3;
+  text-shadow: 0 8px 36px rgba(0, 0, 0, 0.32);
 }
 
-
+@media (max-height: 760px) {
+  .container {
+    font-size: clamp(4rem, 12vh, 5.5rem);
+  }
+}

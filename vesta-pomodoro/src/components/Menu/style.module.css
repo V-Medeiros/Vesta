@@ -1,33 +1,74 @@
 .menu {
-  text-align: center;
-  justify-content: center;
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
 }
 
 .buttonMenu {
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  border: 0;
+  min-width: 40px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  padding: 0 10px;
+  color: rgba(255, 255, 255, 0.62);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
   cursor: pointer;
-  background-color: #e8540a;
-  border-radius: 15%;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
-.menuLink {
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  color: black;
-
+.buttonMenu svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
 }
 
-.buttonMenu:hover{
-  filter:  brightness(80%);
-  transition: all 0.2s ease-in-out;
+.historyButton {
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
+.buttonMenu:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.buttonMenu:active {
+  transform: translateY(1px);
+}
+
+.buttonMenu:focus-visible {
+  color: var(--text);
+  outline: 2px solid var(--highlight);
+  outline-offset: 2px;
+}
+
+.buttonMenu[aria-current='page'] {
+  color: #111111;
+  background: var(--primary);
+}
+
+@media (max-width: 520px) {
+  .menu {
+    gap: 2px;
+  }
+
+  .buttonMenu {
+    padding-inline: 8px;
+  }
+
+  .historyButton span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

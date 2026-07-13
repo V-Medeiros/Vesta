@@ -1,83 +1,53 @@
-import { FlameKindling } from 'lucide-react';
+import { FlameKindling, PlayIcon } from 'lucide-react';
 import './App.css';
-import { Container } from './components/Container';
-import { Heading } from './components/Heading';
 import { Menu } from './components/Menu';
-import { Controller } from './components/Controller';
 import { FocusFlame } from './components/FocusFlame';
 import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
 import { Cycle } from './components/Cycle';
+import { DefaultButton } from './components/DefaultButton';
 
 export function App() {
   return (
     <div className='app'>
-      {/*HEADER */}
-      <section>
-        <Container>
-          <Heading>
-            <button className='logo-button'>
-              <FlameKindling className='logo-icon' />
-            </button>
-            VESTA
-          </Heading>
-        </Container>
-      </section>
+      <header className='app-header'>
+        <a className='brand' href='#session-title' aria-label='Vesta — ir para a sessão de foco'>
+          <span className='brand-mark' aria-hidden='true'>
+            <FlameKindling />
+          </span>
+          <span>VESTA</span>
+        </a>
 
-      {/*MENU */}
-      <section>
-        <Container>
-          <Menu />
-        </Container>
-      </section>
+        <Menu />
+      </header>
 
-      {/* FLAME */}
-      <section>
-        <Container>
-          <FocusFlame />
-        </Container>
-      </section>
+      <main className='app-main' aria-labelledby='session-title'>
+        <h1 className='session-title' id='session-title'>Sessão de foco</h1>
 
-      {/* TIMER */}
-      <section className='timer-section'>
-        <Container>
-          <CountDown />
-        </Container>
-      </section>
+        <FocusFlame />
+        <CountDown />
 
-      {/* CONTROLLER */}
-      <section>
-        <Controller />
-      </section>
+        <form className='task-form' onSubmit={(event) => event.preventDefault()}>
+          <DefaultInput
+            type='text'
+            id='inputTask'
+            labelText='Tarefa'
+            placeholder='Qual é o foco desta sessão?'
+            autoComplete='off'
+          />
 
-      {/* TASK */}
-      <section>
-        <Container>
-          <form className='form' action=''>
-            <div className='formRow'>
-              <DefaultInput type='text' id='inputTask' labelText='task' />
-            </div>
-          </form>
-        </Container>
-      </section>
+          <DefaultButton type='submit' icon={<PlayIcon />}>
+            Iniciar foco
+          </DefaultButton>
+        </form>
 
-    <section>
-        <div className='formRow'>
-          <Cycle/>
-        </div>
-    </section>
+        <Cycle />
+      </main>
 
-
-      {/* FOOTER */}
-      <section>
-        <Container>
-          <footer className='app-footer'>
-            <span className='footer-brand'>VESTA</span>
-            <span className='footer-divider' />
-            <span className='footer-copy'>One spark at a time.</span>
-          </footer>
-        </Container>
-      </section>
+      <footer className='app-footer'>
+        <span className='footer-spark' aria-hidden='true' />
+        <span>Uma faísca de cada vez.</span>
+      </footer>
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import styles from './style.module.css';
 
-
 export function CountDown() {
-  return(
-    <div className={styles.container}>00:00</div>
-  )
+  return (
+    <time className={styles.container} dateTime='PT25M' aria-label='25 minutos restantes'>
+      25:00
+    </time>
+  );
 }
