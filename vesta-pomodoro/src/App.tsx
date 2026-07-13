@@ -1,13 +1,13 @@
-import { FlameKindling } from 'lucide-react';
+import { FlameKindling, PlayCircleIcon } from 'lucide-react';
 import './App.css';
 import { Container } from './components/Container';
 import { Heading } from './components/Heading';
 import { Menu } from './components/Menu';
-import { Controller } from './components/Controller';
 import { FocusFlame } from './components/FocusFlame';
 import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
 import { Cycle } from './components/Cycle';
+import { DefaultButton } from './components/DefaultButton';
 
 export function App() {
   return (
@@ -26,19 +26,18 @@ export function App() {
 
       <main>
         <Container>
-          {/* Chama de foco, cronômetro e controles da sessão */}
+          {/* FocusFlame, CountDown e Controller */}
           <section className='timer-area'>
             <FocusFlame />
             <CountDown />
-            <Controller />
+            <DefaultButton icon={<PlayCircleIcon/>} />
           </section>
 
-          {/* Tarefa atual e sequência de ciclos do Pomodoro */}
+          {/* DefaultInput e Cycle  botaodefault*/}
           <section className='session-details'>
             <form className='task-form'>
               <DefaultInput type='text' id='inputTask' labelText='Task' />
             </form>
-
             <Cycle />
           </section>
         </Container>
