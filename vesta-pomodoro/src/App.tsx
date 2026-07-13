@@ -1,6 +1,5 @@
-import { FlameKindling, PlayCircleIcon } from 'lucide-react';
+import { FlameKindling, PlayIcon } from 'lucide-react';
 import './App.css';
-import { Container } from './components/Container';
 import { Heading } from './components/Heading';
 import { Menu } from './components/Menu';
 import { FocusFlame } from './components/FocusFlame';
@@ -13,44 +12,48 @@ export function App() {
   return (
     <div className='app'>
       <header className='app-header'>
-        <Container>
-          <Heading>
-            <button className='logo-button'>
-              <FlameKindling className='logo-icon' />
-            </button>
-            VESTA
-          </Heading>
-          <Menu />
-        </Container>
+        <Heading>
+          <span className='logo-mark' aria-hidden='true'>
+            <FlameKindling className='logo-icon' />
+          </span>
+          VESTA
+        </Heading>
+
+        <nav className='mode-menu' aria-label='Modos do temporizador'>
+          <button className='mode-button active-mode' type='button'>Foco</button>
+          <button className='mode-button' type='button'>Temporizador</button>
+          <button className='mode-button' type='button'>Cronômetro</button>
+        </nav>
+
+        <Menu />
       </header>
 
-      <main>
-        <Container>
-          {/* FocusFlame, CountDown e Controller */}
-          <section className='timer-area'>
-            <FocusFlame />
-            <CountDown />
-            <DefaultButton icon={<PlayCircleIcon/>} />
-          </section>
+      <main className='app-main'>
+        <section className='timer-area' aria-labelledby='session-title'>
+          <h2 className='session-title' id='session-title'>Sessão de foco</h2>
+          <FocusFlame />
+          <CountDown />
+          <Cycle />
 
-          {/* DefaultInput e Cycle  botaodefault*/}
-          <section className='session-details'>
-            <form className='task-form'>
-              <DefaultInput type='text' id='inputTask' labelText='Task' />
-            </form>
-            <Cycle />
-          </section>
-        </Container>
+          <form className='task-form'>
+            <DefaultInput
+              type='text'
+              id='inputTask'
+              labelText='Foco da sessão'
+              placeholder='Qual é o foco desta sessão?'
+            />
+            <DefaultButton type='button' icon={<PlayIcon />}>
+              Iniciar foco
+            </DefaultButton>
+          </form>
+        </section>
       </main>
 
       <footer className='app-footer'>
-        <Container>
-          <div className='footer-content'>
-            <span className='footer-brand'>VESTA</span>
-            <span className='footer-divider' />
-            <span className='footer-copy'>One spark at a time.</span>
-          </div>
-        </Container>
+        <div className='footer-content'>
+          <span className='footer-divider' aria-hidden='true' />
+          <span className='footer-copy'>Uma faísca de cada vez.</span>
+        </div>
       </footer>
     </div>
   );

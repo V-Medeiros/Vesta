@@ -1,9 +1,12 @@
 .heading {
   color: var(--primary);
-  margin: 3.2rem 0;
-  display:flex;
-  align-items:center;
-  justify-content: center;
-  font-size: 2.5rem;
-  margin-top: -0.1rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  gap: 16px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  line-height: 1;
 }

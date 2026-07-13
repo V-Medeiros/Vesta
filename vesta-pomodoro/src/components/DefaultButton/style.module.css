@@ -1,23 +1,29 @@
 .button {
+  width: 100%;
+  min-height: 61px;
   display: flex;
+  align-items: center;
   background: var(--primary);
   color: var(--background);
-  min-width: 22rem;
   justify-content: center;
-  padding: .8rem;
-  border-radius: 0.8rem;
+  gap: 12px;
+  padding: 12px 24px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
+  font-size: 1.15rem;
+  font-weight: 700;
   transition: all 0.1s ease-in-out;
 }
 
-.button svg{
-  width: 2.4rem;
-  height: 2.4rem;
+.button svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 
-.button:hover{
-  filter:brightness(80%);
+.button:hover {
+  filter: brightness(80%);
   transform: translateY(-0.1rem);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }

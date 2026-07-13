@@ -1,36 +1,47 @@
 @import './theme.css';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
+  min-width: 320px;
   margin: 0;
-  min-height: 100vh;
+  min-height: 100svh;
   background: var(--background);
   color: var(--text);
-  font-family: "Segoe UI", sans-serif;
-  font-weight: 800;
-  font-size: 30px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 
-h1 {
-  color: var(--primary);
+button,
+input {
+  font: inherit;
 }
 
-p {
-  color: var(--muted);
-}
-
-.logo-button {
-  padding: 0;
-  border: 0;
-  background: transparent;
+button {
   color: inherit;
-  display: inline-flex;
-  cursor: pointer;
 }
 
-.logo-icon {
-  width: 70px;
-  height: 70px;
-  color: #e8540a;
+#root {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
 }
 
+@media (max-width: 850px) {
+  #root {
+    padding: 0;
+  }
+}
 
