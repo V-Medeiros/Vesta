@@ -116,7 +116,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--secondary);
   box-shadow: 0 0 14px rgba(245, 166, 35, 0.55);
 }
 

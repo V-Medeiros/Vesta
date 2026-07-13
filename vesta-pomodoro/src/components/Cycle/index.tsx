@@ -16,7 +16,7 @@ export function Cycle() {
         <span className={styles.cycleDot} />
       </div>
 
-      <span className={styles.cycleText}>Ciclo 1 de 4</span>
+      <span className={styles.cycleText}> 1 out of 4</span>
     </div>
   )
 }

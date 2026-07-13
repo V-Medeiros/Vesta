@@ -20,9 +20,9 @@ export function App() {
         </Heading>
 
         <nav className='mode-menu' aria-label='Modos do temporizador'>
-          <button className='mode-button active-mode' type='button'>Foco</button>
-          <button className='mode-button' type='button'>Temporizador</button>
-          <button className='mode-button' type='button'>Cronômetro</button>
+          <button className='mode-button active-mode' type='button'>Pomodoro</button>
+          <button className='mode-button' type='button'>Stopwatch</button>
+          <button className='mode-button' type='button'>Timer</button>
         </nav>
 
         <Menu />
@@ -30,8 +30,9 @@ export function App() {
 
       <main className='app-main'>
         <section className='timer-area' aria-labelledby='session-title'>
-          <h2 className='session-title' id='session-title'>Sessão de foco</h2>
+
           <FocusFlame />
+          <h2 className='session-title' id='session-title'>Focus</h2>
           <CountDown />
           <Cycle />
 
@@ -40,10 +41,10 @@ export function App() {
               type='text'
               id='inputTask'
               labelText='Foco da sessão'
-              placeholder='Qual é o foco desta sessão?'
+              placeholder='What drives you today?'
             />
             <DefaultButton type='button' icon={<PlayIcon />}>
-              Iniciar foco
+              Start
             </DefaultButton>
           </form>
         </section>
@@ -52,7 +53,7 @@ export function App() {
       <footer className='app-footer'>
         <div className='footer-content'>
           <span className='footer-divider' aria-hidden='true' />
-          <span className='footer-copy'>Uma faísca de cada vez.</span>
+          <span className='footer-copy'>One spark at a time.</span>
         </div>
       </footer>
     </div>

@@ -1,6 +1,6 @@
 .focusFlame {
-  width: 88px;
-  height: 88px;
+  width: 10rem;
+  height: 10rem;
   margin: 0;
   border: 3px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
@@ -11,7 +11,7 @@
 }
 
 .flameImage {
-  width: 48px;
-  height: 48px;
+  width: 6rem;
+  height: 6rem;
   object-fit: contain;
 }

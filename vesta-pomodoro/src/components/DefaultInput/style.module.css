@@ -1,14 +1,14 @@
 .input {
   width: 100%;
-  min-height: 64px;
+  min-height: 3rem;
   display: block;
   margin: 0;
-  padding: 12px 18px;
+  padding: 0.625rem 1rem;
   color: var(--text);
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 4px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-align: left;
 }
 
