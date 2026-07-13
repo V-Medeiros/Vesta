@@ -2,14 +2,36 @@
   min-height: 90vh;
   display: grid;
   place-content: center;
-  gap: 24px;
-  padding: 32px;
+  gap: 2rem;
+  padding: 2rem;
   text-align: center;
   background: var(--background);
 }
 
-.timer-section {
-  margin-top: -2rem;
+.app-header,
+.timer-area,
+.session-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-header {
+  gap: 1.5rem;
+}
+
+.timer-area {
+  gap: 1rem;
+}
+
+.session-details {
+  gap: 1.8rem;
+  margin-top: 2.5rem;
+}
+
+.task-form {
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
@@ -25,15 +47,16 @@ p {
 }
 
 .app-footer {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.footer-content {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 0.9rem;
-  font-weight: 700;
-  
-  
 }
 
 .footer-brand {

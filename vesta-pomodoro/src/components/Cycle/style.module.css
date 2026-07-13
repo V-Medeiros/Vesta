@@ -1,3 +1,10 @@
+.cycle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .cycleDot{
   display: flex;
   align-items: center;
@@ -25,11 +32,9 @@
   display: flex;
   align-items: center;
   gap: 0.8rem ;
-  margin-top: 1rem;
 }
 
 .cycleText{
   font-size: 1rem;
-  margin-top: -0.8rem;
   font-weight: 400;
 }

@@ -12,8 +12,7 @@ import { Cycle } from './components/Cycle';
 export function App() {
   return (
     <div className='app'>
-      {/*HEADER */}
-      <section>
+      <header className='app-header'>
         <Container>
           <Heading>
             <button className='logo-button'>
@@ -21,63 +20,39 @@ export function App() {
             </button>
             VESTA
           </Heading>
-        </Container>
-      </section>
-
-      {/*MENU */}
-      <section>
-        <Container>
           <Menu />
         </Container>
-      </section>
+      </header>
 
-      {/* FLAME */}
-      <section>
+      <main>
         <Container>
-          <FocusFlame />
+          {/* Chama de foco, cronômetro e controles da sessão */}
+          <section className='timer-area'>
+            <FocusFlame />
+            <CountDown />
+            <Controller />
+          </section>
+
+          {/* Tarefa atual e sequência de ciclos do Pomodoro */}
+          <section className='session-details'>
+            <form className='task-form'>
+              <DefaultInput type='text' id='inputTask' labelText='Task' />
+            </form>
+
+            <Cycle />
+          </section>
         </Container>
-      </section>
+      </main>
 
-      {/* TIMER */}
-      <section className='timer-section'>
+      <footer className='app-footer'>
         <Container>
-          <CountDown />
-        </Container>
-      </section>
-
-      {/* CONTROLLER */}
-      <section>
-        <Controller />
-      </section>
-
-      {/* TASK */}
-      <section>
-        <Container>
-          <form className='form' action=''>
-            <div className='formRow'>
-              <DefaultInput type='text' id='inputTask' labelText='task' />
-            </div>
-          </form>
-        </Container>
-      </section>
-
-    <section>
-        <div className='formRow'>
-          <Cycle/>
-        </div>
-    </section>
-
-
-      {/* FOOTER */}
-      <section>
-        <Container>
-          <footer className='app-footer'>
+          <div className='footer-content'>
             <span className='footer-brand'>VESTA</span>
             <span className='footer-divider' />
             <span className='footer-copy'>One spark at a time.</span>
-          </footer>
+          </div>
         </Container>
-      </section>
+      </footer>
     </div>
   );
 }
