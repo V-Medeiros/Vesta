@@ -48,7 +48,6 @@ Estados previstos:
 No MVP, a chama deve ser feita com SVG animado ou Canvas simples.
 
 ### Tarefas vinculadas ao foco
-
 - Criar tarefas por campo de texto.
 - Selecionar uma tarefa ao iniciar uma sessao.
 - Permitir sessoes sem tarefa vinculada.
@@ -88,7 +87,6 @@ O historico deve ser visual, nao apenas uma lista.
 
 No MVP:
 
-- Exibir os ultimos 14 dias.
 - Mostrar cada dia como brasa, chama ou cinza.
 - Dias com sessoes concluidas aparecem acesos.
 - Dias sem sessao aparecem apagados.
