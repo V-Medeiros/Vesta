@@ -31,6 +31,11 @@
   font-weight: 600;
 }
 
+.historyButton:hover {
+  transform: translateY(-0.03rem);
+  box-shadow: 0px 10px 16px -8px rgba(0, 0, 0, 0.178);
+}
+
 @media (max-width: 520px) {
   .menu {
     gap: 8px;
@@ -46,4 +51,3 @@
     white-space: nowrap;
   }
 }
-
