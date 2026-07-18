@@ -26,5 +26,15 @@
   transition: all 0.2s ease-in-out;
   filter: brightness(80%);
   transform: translateY(-0.1rem);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px var(--shadow);
+}
+
+.orange {
+  background: var(--primary);
+  color: var(--background);
+}
+
+.red {
+  background: var(--quaternary);
+  color: var(--background);
 }

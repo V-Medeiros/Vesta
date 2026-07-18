@@ -6,7 +6,7 @@
   padding: 0.625rem 1rem;
   color: var(--text);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 1rem;
   text-align: left;
@@ -36,3 +36,4 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
+ 

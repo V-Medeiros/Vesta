@@ -2,7 +2,7 @@
   width: 10rem;
   height: 10rem;
   margin: 0;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid var(--border-muted);
   border-radius: 50%;
   display: flex;
   align-items: center;
