@@ -1,12 +1,12 @@
-import { HistoryIcon, MoonIcon, SettingsIcon } from 'lucide-react';
+import { HistoryIcon, MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
 import styles from './style.module.css';
 import { useEffect, useState } from 'react';
+import { applyTheme, initialTheme, type Theme } from '../../theme';
 
 export function Menu() {
-  type availableType = 'dark' | 'light';
-  const [theme, setTheme] = useState<availableType>('dark');
+  const [theme, setTheme] = useState<Theme>(initialTheme);
 
-  function handleTimeChange(
+  function handleThemeChange(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
     event.preventDefault();
@@ -18,8 +18,13 @@ export function Menu() {
   }
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    applyTheme(theme);
   }, [theme]);
+
+  const iconByTheme = {
+    dark: <SunIcon className={styles.menuLink} />,
+    light: <MoonIcon className={styles.menuLink} />,
+  }; 
 
   return (
     <>
@@ -42,11 +47,11 @@ export function Menu() {
           className={styles.buttonMenu}
           type='button'
           aria-label='Alternar tema'
-          onClick={handleTimeChange}
+          onClick={handleThemeChange}
         >
-          <MoonIcon className={styles.menuLink} />
+          {iconByTheme[theme]}
         </button>
-      </nav>
+      </nav>  
     </>
   );
 }

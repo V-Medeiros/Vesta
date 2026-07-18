@@ -21,10 +21,12 @@ body {
   font-family: "Segoe UI", system-ui, sans-serif;
   font-size: 16px;
   font-weight: 400;
+}
 
+:root[data-theme-ready='true'] body {
   transition: 
-  background-color 0.5s ease-in-out;
-  color: 0.5s ease-in-out;
+    background-color 0.5s ease-in-out,
+    color 0.5s ease-in-out;
 }
 
 button,
