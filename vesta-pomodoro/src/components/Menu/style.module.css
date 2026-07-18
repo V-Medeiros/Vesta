@@ -1,33 +1,53 @@
 .menu {
-  text-align: center;
-  justify-content: center;
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  justify-self: end;
+  gap: 20px;
 }
 
 .buttonMenu {
-  width: 48px;
-  height: 48px;
-  padding: 0;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 4px;
   border: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   cursor: pointer;
-  background-color: #e8540a;
-  border-radius: 15%;
+  color: var(--muted);
+  background: transparent;
 }
 
 .menuLink {
   width: 24px;
   height: 24px;
   margin: 0;
-  color: black;
-
 }
 
-.buttonMenu:hover{
-  filter:  brightness(80%);
-  transition: all 0.2s ease-in-out;
+.historyButton {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
+.historyButton:hover {
+  transform: translateY(-0.03rem);
+  box-shadow: 0px 10px 16px -8px var(--shadow-subtle);
+}
+
+@media (max-width: 520px) {
+  .menu {
+    gap: 8px;
+  }
+
+  .historyText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

@@ -1,10 +1,41 @@
 :root {
   --primary: #e8540a;
   --terceary: #863107;
+  --quaternary:#f5a623;
   --secondary: #f5a623;
   --highlight: #ffcf3f;
   --background: #0a0a0a;
   --surface: #111111;
   --text: #ffffff;
   --muted: #a0a0a0;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-subtle: rgba(255, 255, 255, 0.58);
+  --border: rgba(255, 255, 255, 0.22);
+  --border-subtle: rgba(255, 255, 255, 0.14);
+  --border-muted: rgba(255, 255, 255, 0.2);
+  --icon-on-primary: #000000;
+  --primary-glow: rgba(245, 166, 35, 0.55);
+  --shadow: rgba(0, 0, 0, 0.2);
+  --shadow-subtle: rgba(0, 0, 0, 0.178);
+}
+
+:root[data-theme = 'light'] {
+  --primary: #b83a08;
+  --terceary: #7c2d12;
+  --quaternary: #a84b08;
+  --secondary: #b45309;
+  --highlight: #d97706;
+  --background: #f7f2ec;
+  --surface: #fffdf9;
+  --text: #241a15;
+  --muted: #74655d;
+  --text-secondary: rgba(36, 26, 21, 0.72);
+  --text-subtle: rgba(36, 26, 21, 0.62);
+  --border: rgba(83, 57, 43, 0.32);
+  --border-subtle: rgba(83, 57, 43, 0.16);
+  --border-muted: rgba(83, 57, 43, 0.24);
+  --icon-on-primary: #fffaf5;
+  --primary-glow: rgba(217, 119, 6, 0.28);
+  --shadow: rgba(72, 45, 30, 0.18);
+  --shadow-subtle: rgba(72, 45, 30, 0.14);
 }

@@ -1,35 +1,29 @@
-.cycleDot{
+.cycle {
   display: flex;
   align-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50% ;
+  gap: 24px;
+  color: var(--muted);
 }
 
-.focus{
-  background-color: var(--primary);
-}
-
-
-.shortBreak{
-  background-color: var(--secondary);
-}
-
-
-.longBreak{
-  background-color: var(--terceary);
-}
-
-
-.cycleDots{
+.cycleDots {
   display: flex;
   align-items: center;
-  gap: 0.8rem ;
-  margin-top: 1rem;
+  gap: 14px;
 }
 
-.cycleText{
+.cycleDot {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--muted);
+  border-radius: 50%;
+}
+
+.current {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.cycleText {
   font-size: 1rem;
-  margin-top: -0.8rem;
   font-weight: 400;
 }

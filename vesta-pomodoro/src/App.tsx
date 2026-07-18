@@ -1,83 +1,74 @@
-import { FlameKindling } from 'lucide-react';
+import { FlameKindling, PlayIcon } from 'lucide-react';
 import './App.css';
-import { Container } from './components/Container';
 import { Heading } from './components/Heading';
 import { Menu } from './components/Menu';
-import { Controller } from './components/Controller';
 import { FocusFlame } from './components/FocusFlame';
 import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
 import { Cycle } from './components/Cycle';
+import { DefaultButton } from './components/DefaultButton';
 
 export function App() {
+
   return (
-    <div className='app'>
-      {/*HEADER */}
-      <section>
-        <Container>
+    <>
+      <div className='app'>
+        <header className='app-header'>
           <Heading>
-            <button className='logo-button'>
+            <span className='logo-mark' aria-hidden='true'>
               <FlameKindling className='logo-icon' />
-            </button>
+            </span>
             VESTA
           </Heading>
-        </Container>
-      </section>
 
-      {/*MENU */}
-      <section>
-        <Container>
+          <nav className='mode-menu' aria-label='Modos do temporizador'>
+            <button className='mode-button active-mode' type='button'>
+              Pomodoro
+            </button>
+            <button className='mode-button' type='button'>
+              Stopwatch
+            </button>
+            <button className='mode-button' type='button'>
+              Timer
+            </button>
+          </nav>
+
           <Menu />
-        </Container>
-      </section>
+        </header>
 
-      {/* FLAME */}
-      <section>
-        <Container>
-          <FocusFlame />
-        </Container>
-      </section>
+        <main className='app-main'>
+          <section className='timer-area' aria-labelledby='session-title'>
+            <FocusFlame />
+            <h2 className='session-title' id='session-title'>
+              Focus
+            </h2>
+            <CountDown />
+            <Cycle />
 
-      {/* TIMER */}
-      <section className='timer-section'>
-        <Container>
-          <CountDown />
-        </Container>
-      </section>
+            <form className='task-form'>
+              <DefaultInput
+                type='text'
+                id='inputTask'
+                labelText='Foco da sessao'
+                placeholder='What drives you today?'
+              />
+              <DefaultButton type='button' icon={<PlayIcon />} color='orange'>
+                Start
+              </DefaultButton>
+              {/* <DefaultButton type='button' icon={<PlayIcon />} color='red'>
+              Stop
+            </DefaultButton>*/}
+            </form>
+          </section>
+        </main>
 
-      {/* CONTROLLER */}
-      <section>
-        <Controller />
-      </section>
-
-      {/* TASK */}
-      <section>
-        <Container>
-          <form className='form' action=''>
-            <div className='formRow'>
-              <DefaultInput type='text' id='inputTask' labelText='task' />
-            </div>
-          </form>
-        </Container>
-      </section>
-
-    <section>
-        <div className='formRow'>
-          <Cycle/>
-        </div>
-    </section>
-
-
-      {/* FOOTER */}
-      <section>
-        <Container>
-          <footer className='app-footer'>
-            <span className='footer-brand'>VESTA</span>
-            <span className='footer-divider' />
+        <footer className='app-footer'>
+          <div className='footer-content'>
+            <span className='footer-divider' aria-hidden='true' />
             <span className='footer-copy'>One spark at a time.</span>
-          </footer>
-        </Container>
-      </section>
-    </div>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 }
