@@ -1,7 +1,7 @@
 import { HistoryIcon, MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
 import styles from './style.module.css';
 import { useEffect, useState } from 'react';
-import { applyTheme, initialTheme, type Theme } from '../../theme';
+import { applyTheme, initialTheme, type Theme } from '../../theme/theme';
 
 export function Menu() {
   const [theme, setTheme] = useState<Theme>(initialTheme);

@@ -2,7 +2,7 @@ import { CountDown } from '../../components/CountDown';
 import { Cycle } from '../../components/Cycle';
 import { FocusFlame } from '../../components/FocusFlame';
 import { MainForm } from '../../components/MainForm';
-import type { TaskStateModel } from '../../Models/taskStateModule';
+import type { TaskStateModel } from '../../Models/TaskStateModule';
 import { MainTemplate } from '../../templates/MainTemplate';
 
 type HomeProps = {

@@ -1,4 +1,4 @@
-import type { TaskStateModel } from "./taskStateModule";
+import type { TaskStateModel } from "./TaskStateModule";
 
 export type TaskModel = {
     id: string;

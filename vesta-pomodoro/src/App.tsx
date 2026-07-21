@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Home } from './pages/Home';
-import type { TaskStateModel } from './Models/taskStateModule';
+import type { TaskStateModel } from './Models/TaskStateModule';
 
 const initialState: TaskStateModel = {
   tasks: [],
