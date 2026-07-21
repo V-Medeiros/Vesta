@@ -1,3 +1,4 @@
+import { Container } from '../../components/Container';
 import { CountDown } from '../../components/CountDown';
 import { Cycle } from '../../components/Cycle';
 import { FocusFlame } from '../../components/FocusFlame';
@@ -11,6 +12,8 @@ type HomeProps = {
 }
 
 export function Home(props: HomeProps) {
+  /* const {stateHome, setStateHome} = props; */ 
+
   return (
     <MainTemplate>
       <section className='timer-area' aria-labelledby='session-title'>
