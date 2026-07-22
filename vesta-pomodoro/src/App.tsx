@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Home } from './pages/Home';
-import type { TaskStateModel } from './Models/TaskStateModule';
+import type { TaskStateModel } from './Models/TaskStateModel';
+import {TaskContextProvider} from './context/TaskContext'
 
 const initialState: TaskStateModel = {
   tasks: [],
-  secondsRemaining: 0, 
+  secondsRemaining: 0,
   formattedSecondsRemaining: '00:00',
   activeTask: null,
   currentCycle: 0,
@@ -18,5 +19,9 @@ const initialState: TaskStateModel = {
 export function App() {
   const [state, setState] = useState<TaskStateModel>(initialState);
 
-  return <Home stateHome={state} setStateHome={setState} />;
+  return (
+    <TaskContextProvider>
+      <Home />;
+    </TaskContextProvider>
+  );
 }
