@@ -4,12 +4,12 @@ import { initialTaskState } from "./initialTaskState";
 
 type TaskContextProps = {
   ContextState: TaskStateModel;
-  ContextSetState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
+  SetState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
 };
 
 const intialContextvalue = {
   ContextState: initialTaskState,
-  ContextSetState: () => {},
+  SetState: () => {},
 };
 
 export const TaskContext = createContext<TaskContextProps>(intialContextvalue);

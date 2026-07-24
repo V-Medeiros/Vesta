@@ -8,11 +8,11 @@ type TaskContexProviderProps = {
 };
 
 export function TaskContextProvider({ children }: TaskContexProviderProps) {
-  const [ContextState, ContextSetState] =
+  const [ContextState, SetState] =
     useState<TaskStateModel>(initialTaskState);
 
   return (
-    <TaskContext.Provider value={{ ContextState, ContextSetState }}>
+    <TaskContext.Provider value={{ ContextState, SetState }}>
       {children}
     </TaskContext.Provider>
   );

@@ -1,5 +1,5 @@
+import { TaskContextProvider } from './context/TaskContext/TaskContextProvider';
 import { Home } from './pages/Home';
-import { TaskContextProvider } from './context/TaskContext';
 
 export function App() {
   return (
