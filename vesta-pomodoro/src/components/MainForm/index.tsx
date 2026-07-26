@@ -1,16 +1,24 @@
 import { PlayIcon } from 'lucide-react';
 import { DefaultButton } from '../DefaultButton';
 import { DefaultInput } from '../DefaultInput';
-import { useState } from 'react';
+import { useRef } from 'react';
 
 export function MainForm() {
 
-  const [taskName, setTaskName] = useState('');
+  const taskNameInput = useRef<HTMLInputElement>(null)
 
   function StartNewTask(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
-  }
 
+    if(taskNameInput.current === null) return;
+
+    const taskName = taskNameInput.current.value.trim()
+
+
+    if (!taskName){
+      return
+    }
+  }
 
   return (
     <form onSubmit={StartNewTask} className='task-form'>
@@ -19,8 +27,7 @@ export function MainForm() {
         id='inputTask'
         labelText='Foco da sessao'
         placeholder='What drives you today?'
-        value={taskName}
-        onChange={e => setTaskName(e.target.value)}
+        ref={taskNameInput}
       />
       <DefaultButton type='submit' icon={<PlayIcon />} color='orange'>
         Start
