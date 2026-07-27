@@ -5,12 +5,14 @@ import { useRef } from 'react';
 import type { TaskModel } from '../../Models/TaskModel';
 import { useTaskContext } from '../../context/TaskContext/UseTaskContext';
 import { getNextCycle } from '../../utils/getNextcycle';
+import { NextCycleType } from '../../utils/NextCycleType';
 
 export function MainForm() {
   const { ContextState, SetState } = useTaskContext()
   const taskNameInput = useRef<HTMLInputElement>(null)
 
   const nextCycle = getNextCycle(ContextState.currentCycle);
+  const nextCycleType = NextCycleType(nextCycle)
 
   function StartNewTask(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -31,8 +33,8 @@ export function MainForm() {
       startDate: Date.now(),
       completeDate: null,
       interruptDate: null,
-      duration: 1,
-      type: 'workTime',
+      duration: ContextState.config[nextCycleType],
+      type: nextCycleType,
 
     };
 
