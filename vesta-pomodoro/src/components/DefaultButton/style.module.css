@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   background: var(--primary);
-  color: var(--background);
+  color: var(--icon-on-primary);
   justify-content: center;
   gap: 0.625rem;
   padding: 0.625rem 1.25rem;
@@ -31,10 +31,10 @@
 
 .orange {
   background: var(--primary);
-  color: var(--background);
+  color: var(--icon-on-primary);
 }
 
 .red {
   background: var(--quaternary);
-  color: var(--background);
+  color: var(--icon-on-primary);
 }

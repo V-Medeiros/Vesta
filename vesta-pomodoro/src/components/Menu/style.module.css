@@ -18,8 +18,17 @@
   cursor: pointer;
   color: var(--muted);
   background: transparent;
+  border-radius: 8px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
+.buttonMenu:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
 
 .menuLink {
   width: 24px;
@@ -34,7 +43,6 @@
 
 .historyButton:hover {
   transform: translateY(-0.03rem);
-  box-shadow: 0px 10px 16px -8px var(--shadow-subtle);
 }
 
 @media (max-width: 520px) {

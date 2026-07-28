@@ -16,7 +16,7 @@
   width: 16px;
   height: 16px;
   flex: 0 0 16px;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--cycle-empty);
   border-radius: 50%;
   background: transparent;
   transition:
