@@ -12,23 +12,30 @@ const cycleDescriptionMap: Record<TaskModel['type'], string> = {
 
 export function Cycle() {
   const { ContextState } = useTaskContext();
-  const cycleSteps = Array.from({ length: ContextState.currentCycle });
+  const cycleSteps = Array.from({ length: 8 });
 
   if (ContextState.currentCycle === 0) return null;
 
   return (
     <div className={styles.cycle}>
-      <div className={styles.cycleDots}>
+      <div className={styles.cycleDots} role='list' aria-label='Etapas do ciclo'>
         {cycleSteps.map((_, index) => {
           const cycleNumber = getNextCycle(index);
           const cycleType = NextCycleType(cycleNumber);
-          const description =
-            `Ciclo ${cycleNumber}: ${cycleDescriptionMap[cycleType]}`;
+          const isFilled = cycleNumber <= ContextState.currentCycle;
+          const isCurrent = cycleNumber === ContextState.currentCycle;
+          const cycleStatus = isFilled ? 'preenchido' : 'pendente';
+          const description = `Ciclo ${cycleNumber}: ${
+            cycleDescriptionMap[cycleType]
+          }, ${cycleStatus}`;
 
           return (
             <span
               key={cycleNumber}
-              className={`${styles.cycleDot} ${styles[cycleType]}`}
+              className={`${styles.cycleDot} ${styles[cycleType]} ${
+                isFilled ? styles.filled : ''
+              } ${isCurrent ? styles.current : ''}`}
+              role='listitem'
               aria-label={description}
               title={description}
             />

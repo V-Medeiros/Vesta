@@ -57,7 +57,7 @@ export function MainForm() {
   }
 
   return (
-    <form onSubmit={StartNewTask} className='task-form'>ça 
+    <form onSubmit={StartNewTask} className='task-form'>
       <DefaultInput
         type='text'
         id='inputTask'

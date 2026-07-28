@@ -1,39 +1,64 @@
 .cycle {
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: center;
+  gap: 20px;
   color: var(--muted);
 }
 
 .cycleDots {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
 
 .cycleDot {
-  width: 18px;
-  height: 18px;
-  border: 2px solid transparent;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border: 2px solid #ffffff;
   border-radius: 50%;
+  background: transparent;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .workTime {
-  background: var(--primary);
-  border-color: var(--primary);
+  --cycle-color: var(--primary);
 }
 
 .shortBreakTime {
-  background: var(--secondary);
-  border-color: var(--secondary);
+  --cycle-color: var(--secondary);
 }
 
 .longBreakTime {
-  background: var(--highlight);
-  border-color: var(--highlight);
+  --cycle-color: var(--highlight);
+}
+
+.filled {
+  background: var(--cycle-color);
+  border-color: var(--cycle-color);
+}
+
+.current {
+  transform: scale(1.08);
 }
 
 .cycleText {
   font-size: 1rem;
   font-weight: 400;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .cycle {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cycleDots {
+    gap: 8px;
+  }
 }
