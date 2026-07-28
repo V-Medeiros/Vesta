@@ -64,6 +64,7 @@ export function MainForm() {
         labelText='Foco da sessao'
         placeholder='What drives you today?'
         ref={taskNameInput}
+        disabled={!!ContextState.activeTask}
       />
       <DefaultButton type='submit' icon={<PlayIcon />} color='orange'>
         Start

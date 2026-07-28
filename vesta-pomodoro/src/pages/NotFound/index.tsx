@@ -5,7 +5,7 @@ export function NotFound() {
   return (
     <MainTemplate>
       <Container>
-        <p>Página não encontrada.</p>
+        <h1>Page not found</h1>
       </Container>
     </MainTemplate>
   );
