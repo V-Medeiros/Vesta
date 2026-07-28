@@ -1,4 +1,4 @@
-import { PlayIcon } from 'lucide-react';
+import { PlayIcon, SquareIcon } from 'lucide-react';
 import { DefaultButton } from '../DefaultButton';
 import { DefaultInput } from '../DefaultInput';
 import { useRef } from 'react';
@@ -56,6 +56,7 @@ export function MainForm() {
     })
   }
 
+
   return (
     <form onSubmit={StartNewTask} className='task-form'>
       <DefaultInput
@@ -66,9 +67,14 @@ export function MainForm() {
         ref={taskNameInput}
         disabled={!!ContextState.activeTask}
       />
-      <DefaultButton type='submit' icon={<PlayIcon />} color='orange'>
-        Start
+
+      {ContextState.activeTask ? (
+        <DefaultButton type='button' icon={<SquareIcon />} color='red'>
+        Stop
       </DefaultButton>
+      ): (<DefaultButton type='submit' icon={<PlayIcon />} color='orange'>
+        Start
+      </DefaultButton>)}
     </form>
   );
 }
