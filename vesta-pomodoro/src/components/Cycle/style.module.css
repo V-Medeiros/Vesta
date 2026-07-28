@@ -14,13 +14,23 @@
 .cycleDot {
   width: 18px;
   height: 18px;
-  border: 2px solid var(--muted);
+  border: 2px solid transparent;
   border-radius: 50%;
 }
 
-.current {
+.workTime {
   background: var(--primary);
   border-color: var(--primary);
+}
+
+.shortBreakTime {
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.longBreakTime {
+  background: var(--highlight);
+  border-color: var(--highlight);
 }
 
 .cycleText {
