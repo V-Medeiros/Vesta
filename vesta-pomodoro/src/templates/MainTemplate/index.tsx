@@ -4,18 +4,29 @@ import '../../App.css';
 import { Heading } from '../../components/Heading';
 import { Menu } from '../../components/Menu';
 import { StreakBadge } from '../../components/StreakBadge';
+import type { AppMode } from '../../Models/AppMode';
 
 type MainTemplateProps = {
   children: ReactNode;
+  activeMode?: AppMode;
+  onModeChange?: (mode: AppMode) => void;
   onOpenHistory?: () => void;
   onOpenSettings?: () => void;
 };
 
 export function MainTemplate({
   children,
+  activeMode = 'pomodoro',
+  onModeChange,
   onOpenHistory,
   onOpenSettings,
 }: MainTemplateProps) {
+  const modes: { id: AppMode; label: string }[] = [
+    { id: 'pomodoro', label: 'Pomodoro' },
+    { id: 'stopwatch', label: 'Stopwatch' },
+    { id: 'timer', label: 'Timer' },
+  ];
+
   return (
     <div className='app'>
       <header className='app-header'>
@@ -26,7 +37,24 @@ export function MainTemplate({
           VESTA
         </Heading>
 
-        <StreakBadge />
+        <div className='header-center'>
+          <nav className='mode-menu' aria-label='Timer modes'>
+            {modes.map((mode) => (
+              <button
+                key={mode.id}
+                className={`mode-button ${
+                  activeMode === mode.id ? 'active-mode' : ''
+                }`}
+                type='button'
+                aria-current={activeMode === mode.id ? 'page' : undefined}
+                onClick={() => onModeChange?.(mode.id)}
+              >
+                {mode.label}
+              </button>
+            ))}
+          </nav>
+          <StreakBadge />
+        </div>
 
         <Menu
           onOpenHistory={onOpenHistory}
