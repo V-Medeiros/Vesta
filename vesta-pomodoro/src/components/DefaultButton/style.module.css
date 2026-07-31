@@ -34,7 +34,13 @@
   color: var(--icon-on-primary);
 }
 
-.red {
-  background: var(--quaternary);
-  color: var(--icon-on-primary);
+.secondary {
+  color: var(--text);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+}
+
+.danger {
+  color: #ffffff;
+  background: #9f2f1f;
 }

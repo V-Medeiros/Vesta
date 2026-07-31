@@ -19,17 +19,7 @@ export function MainTemplate({ children }: MainTemplateProps) {
           VESTA
         </Heading>
 
-        <nav className='mode-menu' aria-label='Modos do temporizador'>
-          <button className='mode-button active-mode' type='button'>
-            Pomodoro
-          </button>
-          <button className='mode-button' type='button'>
-            Stopwatch
-          </button>
-          <button className='mode-button' type='button'>
-            Timer
-          </button>
-        </nav>
+        <p className='product-intent'>Alimente sua chama com tempo de foco</p>
 
         <Menu />
       </header>

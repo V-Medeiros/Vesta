@@ -1,80 +1,121 @@
-import { PlayIcon, SquareIcon } from 'lucide-react';
-import { DefaultButton } from '../DefaultButton';
-import { DefaultInput } from '../DefaultInput';
-import { useRef } from 'react';
-import type { TaskModel } from '../../Models/TaskModel';
+import {
+  PauseIcon,
+  PlayIcon,
+  RotateCcwIcon,
+  SquareIcon,
+} from 'lucide-react';
 import { useTaskContext } from '../../context/TaskContext/UseTaskContext';
-import { getNextCycle } from '../../utils/getNextcycle';
-import { NextCycleType } from '../../utils/NextCycleType';
-import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
+import { DefaultButton } from '../DefaultButton';
+import styles from './style.module.css';
+
+const DURATION_PRESETS = [15, 25, 45, 60];
 
 export function MainForm() {
-  const { ContextState, SetState } = useTaskContext()
-  const taskNameInput = useRef<HTMLInputElement>(null)
+  const {
+    ContextState,
+    abandonSession,
+    pauseSession,
+    resumeSession,
+    setDuration,
+    startSession,
+  } = useTaskContext();
+  const isActive =
+    ContextState.sessionStatus === 'running' ||
+    ContextState.sessionStatus === 'paused';
 
-  const nextCycle = getNextCycle(ContextState.currentCycle);
-  const nextCycleType = NextCycleType(nextCycle)
+  function handleAbandon() {
+    const confirmed = window.confirm(
+      'Deseja abandonar esta sessão? O tempo não contará para o streak.',
+    );
 
-  function StartNewTask(event: React.SubmitEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (taskNameInput.current === null) return;
-
-    const taskName = taskNameInput.current.value.trim()
-
-
-    if (!taskName) {
-      alert('AAAAAAAAAAAAAAA digite o nome da tarefa')
-      return
-    }
-
-    const newTask: TaskModel = {
-      id: Date.now().toString(),
-      name: taskName,
-      startDate: Date.now(),
-      completeDate: null,
-      interruptDate: null,
-      duration: ContextState.config[nextCycleType],
-      type: nextCycleType,
-
-    };
-
-    const SecondsRemaining = newTask.duration * 60
-
-    SetState(prevState => {
-      return {
-        ...prevState,
-        activeTask: newTask,
-        currentCycle: nextCycle,
-        secondsRemaining: SecondsRemaining,
-        formattedSecondsRemaining: formatSecondsToMinutes(SecondsRemaining),
-        tasks: [...prevState.tasks, newTask],
-        config: { ...prevState.config },
-
-
-      }
-    })
+    if (confirmed) abandonSession();
   }
 
-
   return (
-    <form onSubmit={StartNewTask} className='task-form'>
-      <DefaultInput
-        type='text'
-        id='inputTask'
-        labelText='Foco da sessao'
-        placeholder='What drives you today?'
-        ref={taskNameInput}
-        disabled={!!ContextState.activeTask}
-      />
+    <div className={styles.controls}>
+      <fieldset className={styles.durationFieldset} disabled={isActive}>
+        <legend>Duração da sessão</legend>
+        <div className={styles.presets}>
+          {DURATION_PRESETS.map((minutes) => (
+            <button
+              key={minutes}
+              className={`${styles.preset} ${
+                ContextState.durationMinutes === minutes ? styles.selected : ''
+              }`}
+              type='button'
+              onClick={() => setDuration(minutes)}
+              aria-pressed={ContextState.durationMinutes === minutes}
+            >
+              {minutes} min
+            </button>
+          ))}
+          <label className={styles.customDuration}>
+            <span>Personalizado</span>
+            <input
+              type='number'
+              min='5'
+              max='120'
+              value={ContextState.durationMinutes}
+              onChange={(event) => setDuration(Number(event.target.value))}
+              aria-label='Duração personalizada em minutos'
+            />
+            <span>min</span>
+          </label>
+        </div>
+      </fieldset>
 
-      {ContextState.activeTask ? (
-        <DefaultButton type='button' icon={<SquareIcon />} color='red'>
-        Stop
-      </DefaultButton>
-      ): (<DefaultButton type='submit' icon={<PlayIcon />} color='orange'>
-        Start
-      </DefaultButton>)}
-    </form>
+      <div className={styles.actions}>
+        {!isActive && (
+          <DefaultButton
+            type='button'
+            icon={
+              ContextState.sessionStatus === 'completed' ? (
+                <RotateCcwIcon />
+              ) : (
+                <PlayIcon />
+              )
+            }
+            onClick={startSession}
+          >
+            {ContextState.sessionStatus === 'completed'
+              ? 'Nova sessão'
+              : 'Iniciar foco'}
+          </DefaultButton>
+        )}
+
+        {ContextState.sessionStatus === 'running' && (
+          <DefaultButton
+            type='button'
+            icon={<PauseIcon />}
+            color='secondary'
+            onClick={pauseSession}
+          >
+            Pausar
+          </DefaultButton>
+        )}
+
+        {ContextState.sessionStatus === 'paused' && (
+          <DefaultButton
+            type='button'
+            icon={<PlayIcon />}
+            color='secondary'
+            onClick={resumeSession}
+          >
+            Continuar
+          </DefaultButton>
+        )}
+
+        {isActive && (
+          <DefaultButton
+            type='button'
+            icon={<SquareIcon />}
+            color='danger'
+            onClick={handleAbandon}
+          >
+            Abandonar
+          </DefaultButton>
+        )}
+      </div>
+    </div>
   );
 }
