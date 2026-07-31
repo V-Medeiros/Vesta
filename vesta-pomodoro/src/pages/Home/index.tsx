@@ -92,7 +92,6 @@ export function Home() {
       ) : (
         <ModePlaceholder
           mode={activeMode}
-          onBack={() => setActiveMode('pomodoro')}
         />
       )}
       {isHistoryOpen && <HistoryPanel onClose={closeHistory} />}
