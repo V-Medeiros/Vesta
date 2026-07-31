@@ -9,14 +9,6 @@ import { useTaskContext } from '../../context/TaskContext/UseTaskContext';
 import { MainTemplate } from '../../templates/MainTemplate';
 import { playCompletionSound } from '../../utils/playCompletionSound';
 
-const SESSION_LABELS = {
-  idle: 'Pronto para focar',
-  running: 'Foco em andamento',
-  paused: 'Sessão pausada',
-  completed: 'Sessão concluída',
-  abandoned: 'Sessão encerrada',
-} as const;
-
 export function Home() {
   const { ContextState, dismissFeedback, toggleTask } = useTaskContext();
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -59,7 +51,7 @@ export function Home() {
         <section className='timer-area' aria-labelledby='session-title'>
           <FocusFlame />
           <h2 className='session-title' id='session-title'>
-            {SESSION_LABELS[ContextState.sessionStatus]}
+            Focus
           </h2>
           {selectedTask && (
             <p className='active-task-label'>{selectedTask.text}</p>

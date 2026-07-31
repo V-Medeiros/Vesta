@@ -35,7 +35,7 @@ export function MainForm() {
   return (
     <div className={styles.controls}>
       <label className={styles.taskSelector}>
-        <span>Tarefa vinculada</span>
+        <span>Foco da sessão</span>
         <select
           value={ContextState.selectedTaskId ?? ''}
           disabled={isActive}
@@ -96,9 +96,7 @@ export function MainForm() {
             }
             onClick={startSession}
           >
-            {ContextState.sessionStatus === 'completed'
-              ? 'Nova sessão'
-              : 'Iniciar foco'}
+            Start
           </DefaultButton>
         )}
 
@@ -109,7 +107,7 @@ export function MainForm() {
             color='secondary'
             onClick={pauseSession}
           >
-            Pausar
+            Pause
           </DefaultButton>
         )}
 
@@ -120,7 +118,7 @@ export function MainForm() {
             color='secondary'
             onClick={resumeSession}
           >
-            Continuar
+            Resume
           </DefaultButton>
         )}
 
@@ -131,7 +129,7 @@ export function MainForm() {
             color='danger'
             onClick={handleAbandon}
           >
-            Abandonar
+            Stop
           </DefaultButton>
         )}
       </div>

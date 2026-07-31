@@ -60,7 +60,7 @@ export function TaskPanel() {
             type='text'
             value={taskText}
             maxLength={120}
-            placeholder='O que merece seu foco?'
+            placeholder='What drives you today?'
             onChange={(event) => {
               setTaskText(event.target.value);
               if (error) setError('');
