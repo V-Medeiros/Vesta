@@ -24,7 +24,7 @@ export function TaskPanel() {
     const normalizedText = taskText.trim();
 
     if (!normalizedText) {
-      setError('Digite uma tarefa antes de adicionar.');
+      setError('Enter a task before adding it.');
       return;
     }
 
@@ -35,7 +35,7 @@ export function TaskPanel() {
 
   function handleDelete(taskId: string, taskTextToDelete: string) {
     const confirmed = window.confirm(
-      `Excluir a tarefa “${taskTextToDelete}”? O histórico das sessões será preservado.`,
+      `Delete “${taskTextToDelete}”? Its session history will be preserved.`,
     );
 
     if (confirmed) deleteTask(taskId);
@@ -45,17 +45,17 @@ export function TaskPanel() {
     <aside className={styles.panel} aria-labelledby='tasks-title'>
       <div className={styles.heading}>
         <div>
-          <span className={styles.eyebrow}>Próximas faíscas</span>
-          <h2 id='tasks-title'>Tarefas</h2>
+          <span className={styles.eyebrow}>Next sparks</span>
+          <h2 id='tasks-title'>Tasks</h2>
         </div>
         <span className={styles.count}>
-          {ContextState.tasks.filter((task) => !task.completed).length} abertas
+          {ContextState.tasks.filter((task) => !task.completed).length} open
         </span>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <label>
-          <span className={styles.visuallyHidden}>Nova tarefa</span>
+          <span className={styles.visuallyHidden}>New task</span>
           <input
             type='text'
             value={taskText}
@@ -68,7 +68,7 @@ export function TaskPanel() {
             aria-describedby={error ? 'task-error' : undefined}
           />
         </label>
-        <button type='submit' aria-label='Adicionar tarefa'>
+        <button type='submit' aria-label='Add task'>
           <PlusIcon />
         </button>
       </form>
@@ -82,7 +82,7 @@ export function TaskPanel() {
       {sortedTasks.length === 0 ? (
         <div className={styles.emptyState}>
           <span className={styles.emptySpark} aria-hidden='true' />
-          <p>Crie uma tarefa ou inicie um foco livre.</p>
+          <p>Create a task or start a free focus session.</p>
         </div>
       ) : (
         <ul className={styles.list}>
@@ -104,8 +104,8 @@ export function TaskPanel() {
                   disabled={isSessionTask}
                   aria-label={
                     task.completed
-                      ? `Reabrir ${task.text}`
-                      : `Concluir ${task.text}`
+                      ? `Reopen ${task.text}`
+                      : `Complete ${task.text}`
                   }
                 >
                   {task.completed ? <CheckIcon /> : <CircleIcon />}
@@ -121,8 +121,8 @@ export function TaskPanel() {
                   <span>{task.text}</span>
                   <small>
                     {task.sessionsCount}{' '}
-                    {task.sessionsCount === 1 ? 'sessão' : 'sessões'}
-                    {isSessionTask ? ' · em foco' : ''}
+                    {task.sessionsCount === 1 ? 'session' : 'sessions'}
+                    {isSessionTask ? ' · focusing' : ''}
                   </small>
                 </button>
 
@@ -131,7 +131,7 @@ export function TaskPanel() {
                   type='button'
                   disabled={isSessionTask}
                   onClick={() => handleDelete(task.id, task.text)}
-                  aria-label={`Excluir ${task.text}`}
+                  aria-label={`Delete ${task.text}`}
                 >
                   <Trash2Icon />
                 </button>

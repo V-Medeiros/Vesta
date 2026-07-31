@@ -68,12 +68,12 @@ export function Home() {
                     type='button'
                     onClick={() => toggleTask(completedTask.id)}
                   >
-                    Marcar “{completedTask.text}” como concluída
+                    Mark “{completedTask.text}” as completed
                   </button>
                 )}
               </span>
               <button type='button' onClick={dismissFeedback}>
-                Fechar
+                Close
               </button>
             </div>
           )}

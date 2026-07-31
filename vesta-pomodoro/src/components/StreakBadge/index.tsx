@@ -10,16 +10,16 @@ export function StreakBadge() {
   return (
     <div
       className={styles.badge}
-      aria-label={`Streak atual: ${ContextState.streak.current} dias. Recorde: ${ContextState.streak.longestEver} dias.`}
+      aria-label={`Current streak: ${ContextState.streak.current} days. Best: ${ContextState.streak.longestEver} days.`}
     >
       <span className={styles.current}>
         <FlameIcon />
         <strong>{ContextState.streak.current}</strong>
-        <span>dias</span>
+        <span>days</span>
       </span>
       <span className={styles.divider} aria-hidden='true' />
       <span className={styles.level}>{level.name}</span>
-      <span className={styles.record} title='Recorde pessoal'>
+      <span className={styles.record} title='Personal best'>
         <TrophyIcon />
         {ContextState.streak.longestEver}
       </span>

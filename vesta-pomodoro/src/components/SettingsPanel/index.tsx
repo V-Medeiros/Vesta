@@ -57,15 +57,15 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
       >
         <header className={styles.header}>
           <div>
-            <span className={styles.eyebrow}>Seu ritual</span>
-            <h2 id='settings-title'>Configurações</h2>
-            <p>Ajustes simples, salvos somente neste navegador.</p>
+            <span className={styles.eyebrow}>Your ritual</span>
+            <h2 id='settings-title'>Settings</h2>
+            <p>Simple preferences saved only in this browser.</p>
           </div>
           <button
             className={styles.close}
             type='button'
             onClick={onClose}
-            aria-label='Fechar configurações'
+            aria-label='Close settings'
             autoFocus
           >
             <XIcon />
@@ -74,8 +74,8 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <fieldset>
-            <legend>Duração padrão</legend>
-            <p>Escolha como cada nova sessão deve começar.</p>
+            <legend>Default duration</legend>
+            <p>Choose how every new session should begin.</p>
             <div className={styles.durationOptions}>
               {DURATION_PRESETS.map((minutes) => (
                 <button
@@ -91,7 +91,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                 </button>
               ))}
               <label className={styles.customDuration}>
-                <span>Personalizada</span>
+                <span>Custom</span>
                 <input
                   type='number'
                   min='5'
@@ -116,8 +116,8 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
               <BellRingIcon />
             </span>
             <span>
-              <strong>Som de conclusão</strong>
-              <small>Avisa quando o tempo de foco terminar.</small>
+              <strong>Completion sound</strong>
+              <small>Plays when your focus time ends.</small>
             </span>
             <input
               type='checkbox'
@@ -128,7 +128,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
 
           <button className={styles.save} type='submit'>
             <SaveIcon />
-            Salvar configurações
+            Save settings
           </button>
         </form>
       </section>

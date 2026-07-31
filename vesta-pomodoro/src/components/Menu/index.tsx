@@ -27,7 +27,7 @@ export function Menu({ onOpenHistory, onOpenSettings }: MenuProps) {
   };
 
   return (
-    <nav className={styles.menu} aria-label='Ações'>
+    <nav className={styles.menu} aria-label='Actions'>
       {onOpenHistory && (
         <button
           className={`${styles.buttonMenu} ${styles.historyButton}`}
@@ -35,14 +35,14 @@ export function Menu({ onOpenHistory, onOpenSettings }: MenuProps) {
           onClick={onOpenHistory}
         >
           <HistoryIcon className={styles.menuLink} />
-          <span className={styles.historyText}>Histórico</span>
+          <span className={styles.historyText}>History</span>
         </button>
       )}
       {onOpenSettings && (
         <button
           className={styles.buttonMenu}
           type='button'
-          aria-label='Configurações'
+          aria-label='Settings'
           onClick={onOpenSettings}
         >
           <SettingsIcon className={styles.menuLink} />
@@ -51,7 +51,7 @@ export function Menu({ onOpenHistory, onOpenSettings }: MenuProps) {
       <button
         className={styles.buttonMenu}
         type='button'
-        aria-label={`Usar tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
+        aria-label={`Use ${theme === 'dark' ? 'light' : 'dark'} theme`}
         onClick={handleThemeChange}
       >
         {iconByTheme[theme]}

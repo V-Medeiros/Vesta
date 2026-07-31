@@ -19,9 +19,9 @@ type TaskContextProviderProps = {
 };
 
 const COMPLETION_MESSAGE =
-  'Sessão concluída. A chama está mais forte — preserve esse ritmo.';
+  'Session complete. Your flame is stronger — keep the momentum going.';
 const ABANDONED_MESSAGE =
-  'Sessão encerrada. A chama continua aqui para quando você voltar.';
+  'Session stopped. Your flame will be here when you come back.';
 
 function createId(prefix: string) {
   const randomId =

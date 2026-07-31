@@ -40,7 +40,7 @@ export function getRecentDateKeys(total: number, endDate = new Date()) {
 
 export function formatDateLabel(dateKey: string) {
   const [year, month, day] = dateKey.split('-').map(Number);
-  return new Intl.DateTimeFormat('pt-BR', {
+  return new Intl.DateTimeFormat('en-US', {
     day: '2-digit',
     month: 'short',
   }).format(new Date(year, month - 1, day, 12));

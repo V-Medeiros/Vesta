@@ -11,7 +11,7 @@ export function CountDown() {
       className={styles.container}
       role='timer'
       aria-live='off'
-      aria-label={`${ContextState.secondsRemaining} segundos restantes`}
+      aria-label={`${ContextState.secondsRemaining} seconds remaining`}
     >
       {formatSecondsToMinutes(ContextState.secondsRemaining)}
     </div>

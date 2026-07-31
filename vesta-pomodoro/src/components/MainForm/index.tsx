@@ -26,7 +26,7 @@ export function MainForm() {
 
   function handleAbandon() {
     const confirmed = window.confirm(
-      'Deseja abandonar esta sessão? O tempo não contará para o streak.',
+      'Stop this session? This time will not count toward your streak.',
     );
 
     if (confirmed) abandonSession();
@@ -35,13 +35,13 @@ export function MainForm() {
   return (
     <div className={styles.controls}>
       <label className={styles.taskSelector}>
-        <span>Foco da sessão</span>
+        <span>Session focus</span>
         <select
           value={ContextState.selectedTaskId ?? ''}
           disabled={isActive}
           onChange={(event) => selectTask(event.target.value || null)}
         >
-          <option value=''>Foco livre — sem tarefa</option>
+          <option value=''>Free focus — no task</option>
           {ContextState.tasks
             .filter((task) => !task.completed)
             .map((task) => (
@@ -53,7 +53,7 @@ export function MainForm() {
       </label>
 
       <fieldset className={styles.durationFieldset} disabled={isActive}>
-        <legend>Duração da sessão</legend>
+        <legend>Session duration</legend>
         <div className={styles.presets}>
           {DURATION_PRESETS.map((minutes) => (
             <button
@@ -69,14 +69,14 @@ export function MainForm() {
             </button>
           ))}
           <label className={styles.customDuration}>
-            <span>Personalizado</span>
+            <span>Custom</span>
             <input
               type='number'
               min='5'
               max='120'
               value={ContextState.durationMinutes}
               onChange={(event) => setDuration(Number(event.target.value))}
-              aria-label='Duração personalizada em minutos'
+              aria-label='Custom duration in minutes'
             />
             <span>min</span>
           </label>

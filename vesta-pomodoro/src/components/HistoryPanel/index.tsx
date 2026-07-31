@@ -13,7 +13,7 @@ type HistoryPanelProps = {
 };
 
 function formatSessionTime(timestamp: string) {
-  return new Intl.DateTimeFormat('pt-BR', {
+  return new Intl.DateTimeFormat('en-US', {
     hour: '2-digit',
     minute: '2-digit',
   }).format(new Date(timestamp));
@@ -57,15 +57,15 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
       >
         <header className={styles.header}>
           <div>
-            <span className={styles.eyebrow}>Sua fogueira</span>
-            <h2 id='history-title'>Últimos 14 dias</h2>
-            <p>Cada brasa guarda o tempo que você dedicou.</p>
+            <span className={styles.eyebrow}>Your campfire</span>
+            <h2 id='history-title'>Last 14 days</h2>
+            <p>Every ember holds the time you dedicated.</p>
           </div>
           <button
             className={styles.close}
             type='button'
             onClick={onClose}
-            aria-label='Fechar histórico'
+            aria-label='Close history'
             autoFocus
           >
             <XIcon />
@@ -75,11 +75,11 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
         <div className={styles.streakSummary}>
           <div>
             <strong>{ContextState.streak.current}</strong>
-            <span>streak atual</span>
+            <span>current streak</span>
           </div>
           <div>
             <strong>{ContextState.streak.longestEver}</strong>
-            <span>melhor sequência</span>
+            <span>best streak</span>
           </div>
           <div>
             <strong>
@@ -89,11 +89,11 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
                 ).length
               }
             </strong>
-            <span>focos concluídos</span>
+            <span>focus sessions completed</span>
           </div>
         </div>
 
-        <div className={styles.campfire} role='list' aria-label='Fogueira de 14 dias'>
+        <div className={styles.campfire} role='list' aria-label='14-day campfire'>
           {recentDates.map((date) => {
             const sessions = ContextState.sessions.filter(
               (session) => session.date === date,
@@ -121,9 +121,9 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
                 aria-pressed={isSelected}
                 aria-label={`${formatDateLabel(date)}: ${
                   completedSessions.length
-                } sessões concluídas e ${
+                } completed sessions and ${
                   sessions.length - completedSessions.length
-                } abandonadas`}
+                } abandoned sessions`}
               >
                 <span className={styles.ember} aria-hidden='true'>
                   <span />
@@ -144,13 +144,13 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
             <h3 id='selected-day-title'>{formatDateLabel(selectedDate)}</h3>
             <span>
               {sessionsOnSelectedDate.length}{' '}
-              {sessionsOnSelectedDate.length === 1 ? 'sessão' : 'sessões'}
+              {sessionsOnSelectedDate.length === 1 ? 'session' : 'sessions'}
             </span>
           </div>
 
           {sessionsOnSelectedDate.length === 0 ? (
             <p className={styles.noSessions}>
-              Nenhuma sessão registrada neste dia.
+              No sessions recorded on this day.
             </p>
           ) : (
             <ul className={styles.sessionList}>
@@ -176,10 +176,10 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
                     <span className={styles.sessionDescription}>
                       <strong>
                         {task?.text ??
-                          (session.taskId ? 'Tarefa removida' : 'Foco livre')}
+                          (session.taskId ? 'Deleted task' : 'Free focus')}
                       </strong>
                       <small>
-                        {isCompleted ? 'Concluída' : 'Abandonada'} ·{' '}
+                        {isCompleted ? 'Completed' : 'Abandoned'} ·{' '}
                         {formatSessionTime(session.startedAt)}
                       </small>
                     </span>
