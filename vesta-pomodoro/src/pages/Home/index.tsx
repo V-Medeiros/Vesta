@@ -1,9 +1,11 @@
 import { CountDown } from '../../components/CountDown';
 import { FocusFlame } from '../../components/FocusFlame';
+import { HistoryPanel } from '../../components/HistoryPanel';
 import { MainForm } from '../../components/MainForm';
 import { TaskPanel } from '../../components/TaskPanel';
 import { useTaskContext } from '../../context/TaskContext/UseTaskContext';
 import { MainTemplate } from '../../templates/MainTemplate';
+import { useCallback, useState } from 'react';
 
 const SESSION_LABELS = {
   idle: 'Pronto para focar',
@@ -15,6 +17,8 @@ const SESSION_LABELS = {
 
 export function Home() {
   const { ContextState, dismissFeedback, toggleTask } = useTaskContext();
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const closeHistory = useCallback(() => setIsHistoryOpen(false), []);
   const selectedTask = ContextState.tasks.find(
     (task) => task.id === ContextState.selectedTaskId,
   );
@@ -25,7 +29,7 @@ export function Home() {
       : null;
 
   return (
-    <MainTemplate>
+    <MainTemplate onOpenHistory={() => setIsHistoryOpen(true)}>
       <div className='home-layout'>
         <section className='timer-area' aria-labelledby='session-title'>
           <FocusFlame />
@@ -62,6 +66,7 @@ export function Home() {
 
         <TaskPanel />
       </div>
+      {isHistoryOpen && <HistoryPanel onClose={closeHistory} />}
     </MainTemplate>
   );
 }

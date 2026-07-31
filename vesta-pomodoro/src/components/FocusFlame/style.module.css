@@ -1,32 +1,268 @@
 .focusFlame {
+  --flame-scale: 0.72;
+  --flame-edge: #ff7a1a;
+  position: relative;
   width: 18rem;
   height: 18rem;
   margin: 0;
-  border: 3px solid var(--border-muted);
+  border: 1px solid var(--border-muted);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--surface);
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 72%, rgba(232, 84, 10, 0.11), transparent 42%),
+    var(--surface);
+  overflow: hidden;
+  isolation: isolate;
   transition:
     background-color 0.5s ease-in-out,
     border-color 0.5s ease-in-out;
 }
 
-.flameImage {
-  width: 10rem;
-  height: 10rem;
-  object-fit: contain;
+.focusFlame::after {
+  position: absolute;
+  right: 15%;
+  bottom: 16%;
+  left: 15%;
+  height: 12px;
+  z-index: -1;
+  background: rgba(232, 84, 10, 0.36);
+  border-radius: 50%;
+  filter: blur(11px);
+  content: '';
+}
+
+.aura {
+  position: absolute;
+  width: 62%;
+  height: 62%;
+  z-index: -1;
+  background: var(--primary-glow);
+  border-radius: 50%;
+  filter: blur(36px);
+  opacity: 0.22;
+  transform: translateY(14%);
+}
+
+.flameSvg {
+  width: 56%;
+  height: 66%;
+  overflow: visible;
+  filter: drop-shadow(0 8px 14px rgba(232, 84, 10, 0.24));
+}
+
+.flame {
+  transform: scale(var(--flame-scale));
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+.outerFlame {
+  fill: url('#vesta-outer-flame');
+}
+
+.middleFlame {
+  fill: var(--primary);
+  opacity: 0.92;
+}
+
+.innerFlame {
+  fill: url('#vesta-inner-flame');
+}
+
+.particles {
+  fill: var(--secondary);
+  opacity: 0;
+}
+
+.caption {
+  position: absolute;
+  right: 0;
+  bottom: 18px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.caption strong {
+  color: var(--text-secondary);
+}
+
+.level2 {
+  --flame-scale: 0.82;
+}
+
+.level3 {
+  --flame-scale: 0.9;
+}
+
+.level4 {
+  --flame-scale: 1;
+}
+
+.level5 {
+  --flame-scale: 1.08;
+  --flame-edge: #7957ff;
+}
+
+.level4 .particles,
+.level5 .particles {
+  opacity: 0.82;
+  animation: sparks 2.4s linear infinite;
+}
+
+.level5 .aura {
+  background: rgba(109, 59, 255, 0.36);
+  opacity: 0.4;
+}
+
+.idle .flame {
+  animation: idle-flame 3.4s ease-in-out infinite;
+  opacity: 0.65;
+}
+
+.running .flame {
+  animation: living-flame 0.92s ease-in-out infinite alternate;
+}
+
+.running .aura {
+  animation: aura-pulse 1.8s ease-in-out infinite;
+  opacity: 0.42;
+}
+
+.paused .flame {
+  animation: paused-flame 4s ease-in-out infinite;
+  opacity: 0.52;
+}
+
+.paused .particles {
+  animation-play-state: paused;
+  opacity: 0.16;
+}
+
+.completed .flame {
+  animation: completion-flare 1.2s ease-out both;
+}
+
+.completed .aura {
+  animation: completion-aura 1.2s ease-out both;
+}
+
+.abandoned .flame {
+  animation: abandoned-flame 1s ease-out both;
+}
+
+@keyframes idle-flame {
+  0%,
+  100% {
+    transform: scale(var(--flame-scale)) rotate(-1deg);
+  }
+  50% {
+    transform: scale(calc(var(--flame-scale) * 1.03)) rotate(1deg);
+  }
+}
+
+@keyframes living-flame {
+  from {
+    transform: scaleX(calc(var(--flame-scale) * 0.97))
+      scaleY(calc(var(--flame-scale) * 1.02)) rotate(-1.4deg);
+  }
+  to {
+    transform: scaleX(calc(var(--flame-scale) * 1.03))
+      scaleY(calc(var(--flame-scale) * 0.97)) rotate(1.5deg);
+  }
+}
+
+@keyframes paused-flame {
+  0%,
+  100% {
+    transform: scale(calc(var(--flame-scale) * 0.83));
+  }
+  50% {
+    transform: scale(calc(var(--flame-scale) * 0.87));
+  }
+}
+
+@keyframes completion-flare {
+  0% {
+    transform: scale(var(--flame-scale));
+  }
+  40% {
+    transform: scale(calc(var(--flame-scale) * 1.2));
+    filter: brightness(1.45);
+  }
+  100% {
+    transform: scale(calc(var(--flame-scale) * 1.04));
+  }
+}
+
+@keyframes completion-aura {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8) translateY(14%);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.2) translateY(12%);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1) translateY(14%);
+  }
+}
+
+@keyframes abandoned-flame {
+  from {
+    transform: scale(var(--flame-scale));
+    opacity: 1;
+  }
+  to {
+    transform: scale(calc(var(--flame-scale) * 0.64));
+    opacity: 0.45;
+  }
+}
+
+@keyframes aura-pulse {
+  0%,
+  100% {
+    transform: scale(0.92) translateY(14%);
+  }
+  50% {
+    transform: scale(1.08) translateY(14%);
+  }
+}
+
+@keyframes sparks {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  28% {
+    opacity: 0.88;
+  }
+  to {
+    transform: translateY(-22px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .focusFlame *,
+  .focusFlame *::before,
+  .focusFlame *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 @media (max-height: 820px) {
   .focusFlame {
-    width: clamp(9rem, 26svh, 16rem);
-    height: clamp(9rem, 26svh, 16rem);
-  }
-
-  .flameImage {
-    width: clamp(5rem, 14svh, 9rem);
-    height: clamp(5rem, 14svh, 9rem);
+    width: clamp(11rem, 29svh, 16rem);
+    height: clamp(11rem, 29svh, 16rem);
   }
 }

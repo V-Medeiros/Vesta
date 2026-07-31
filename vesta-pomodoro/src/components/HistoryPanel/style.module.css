@@ -1,0 +1,322 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(9px);
+}
+
+.dialog {
+  width: min(100%, 960px);
+  max-height: min(820px, calc(100svh - 40px));
+  padding: clamp(22px, 4vw, 38px);
+  overflow-y: auto;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+  text-align: left;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.eyebrow {
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  margin: 5px 0;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.close {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: var(--text);
+}
+
+.close svg {
+  width: 20px;
+}
+
+.streakSummary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 28px 0 32px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+}
+
+.streakSummary > div {
+  display: grid;
+  gap: 3px;
+  padding: 16px 20px;
+}
+
+.streakSummary > div + div {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.streakSummary strong {
+  font-size: 1.4rem;
+}
+
+.streakSummary span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.campfire {
+  display: grid;
+  grid-template-columns: repeat(14, minmax(42px, 1fr));
+  gap: 8px;
+  padding: 24px 18px 16px;
+  background:
+    linear-gradient(180deg, transparent, rgba(232, 84, 10, 0.04)),
+    var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.day {
+  min-width: 42px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 8px 3px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.day:hover,
+.selected {
+  color: var(--text);
+  background: var(--surface-hover);
+  border-color: var(--border-subtle);
+}
+
+.ember {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+}
+
+.ember::before,
+.ember::after,
+.ember > span {
+  position: absolute;
+  content: '';
+}
+
+.ember::before,
+.ember::after {
+  bottom: 5px;
+  width: 21px;
+  height: 5px;
+  background: #38332f;
+  border-radius: 999px;
+}
+
+.ember::before {
+  transform: rotate(28deg);
+}
+
+.ember::after {
+  transform: rotate(-28deg);
+}
+
+.ember > span {
+  bottom: 9px;
+  width: 11px;
+  height: 14px;
+  background: #2b2b2b;
+  border-radius: 70% 30% 65% 35%;
+  transform: rotate(45deg);
+}
+
+.lit .ember > span {
+  background: linear-gradient(135deg, #ffcf3f, var(--primary) 68%);
+  box-shadow: 0 0 14px rgba(232, 84, 10, 0.72);
+  animation: ember-breathe 1.8s ease-in-out infinite;
+}
+
+.ash .ember > span {
+  background: #78706a;
+  box-shadow: 0 0 8px rgba(160, 160, 160, 0.16);
+}
+
+.dayLabel {
+  font-size: 0.65rem;
+  white-space: nowrap;
+}
+
+.dayDetails {
+  margin-top: 24px;
+}
+
+.detailsHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.detailsHeading h3 {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.detailsHeading span,
+.noSessions {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.noSessions {
+  margin: 18px 0 0;
+}
+
+.sessionList {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sessionList li {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface-raised);
+  border-radius: 8px;
+}
+
+.successIcon,
+.abandonedIcon {
+  display: grid;
+  place-items: center;
+}
+
+.successIcon {
+  color: var(--primary);
+}
+
+.abandonedIcon {
+  color: var(--muted);
+}
+
+.successIcon svg,
+.abandonedIcon svg {
+  width: 19px;
+}
+
+.sessionDescription {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.sessionDescription strong {
+  overflow: hidden;
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sessionDescription small {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.duration svg {
+  width: 15px;
+}
+
+@keyframes ember-breathe {
+  0%,
+  100% {
+    transform: rotate(45deg) scale(0.94);
+  }
+  50% {
+    transform: rotate(45deg) scale(1.08);
+  }
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 0;
+  }
+
+  .dialog {
+    min-height: 100svh;
+    max-height: 100svh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .streakSummary {
+    grid-template-columns: 1fr;
+  }
+
+  .streakSummary > div + div {
+    border-top: 1px solid var(--border-subtle);
+    border-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lit .ember > span {
+    animation: none;
+  }
+}

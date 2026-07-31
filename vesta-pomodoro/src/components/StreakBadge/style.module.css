@@ -1,0 +1,54 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.current,
+.record {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.current {
+  color: var(--text-secondary);
+}
+
+.current strong {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.current svg {
+  width: 17px;
+  color: var(--primary);
+  fill: currentColor;
+}
+
+.record svg {
+  width: 14px;
+  color: var(--secondary);
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+}
+
+.level {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+@media (max-width: 520px) {
+  .level,
+  .divider,
+  .current > span {
+    display: none;
+  }
+}

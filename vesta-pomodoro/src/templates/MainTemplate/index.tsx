@@ -3,12 +3,19 @@ import { FlameKindling } from 'lucide-react';
 import '../../App.css';
 import { Heading } from '../../components/Heading';
 import { Menu } from '../../components/Menu';
+import { StreakBadge } from '../../components/StreakBadge';
 
 type MainTemplateProps = {
   children: ReactNode;
+  onOpenHistory?: () => void;
+  onOpenSettings?: () => void;
 };
 
-export function MainTemplate({ children }: MainTemplateProps) {
+export function MainTemplate({
+  children,
+  onOpenHistory,
+  onOpenSettings,
+}: MainTemplateProps) {
   return (
     <div className='app'>
       <header className='app-header'>
@@ -19,9 +26,12 @@ export function MainTemplate({ children }: MainTemplateProps) {
           VESTA
         </Heading>
 
-        <p className='product-intent'>Alimente sua chama com tempo de foco</p>
+        <StreakBadge />
 
-        <Menu />
+        <Menu
+          onOpenHistory={onOpenHistory}
+          onOpenSettings={onOpenSettings}
+        />
       </header>
 
       <main className='app-main'>{children}</main>
