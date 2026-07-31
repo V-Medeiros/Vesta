@@ -9,7 +9,7 @@ O produto fica entre aplicativos de foco, rastreadores de habito e experiencias 
 ## Proposta de valor
 
 - Transformar tempo focado em uma experiencia visual e emocional.
-- Mostrar o progresso atual por meio de uma chama animada.
+- Mostrar o progresso atual por meio da chama visual preservada da V1.
 - Representar o esforco acumulado em uma fogueira historica.
 - Incentivar retorno e consistencia sem culpa excessiva.
 - Funcionar inicialmente sem conta, sem internet e sem configuracao complexa.
@@ -28,24 +28,16 @@ Vesta foi pensado para estudantes, desenvolvedores, profissionais criativos e pe
 - Display em formato `MM:SS`.
 - Estados da sessao: `idle`, `running`, `paused`, `completed` e `abandoned`.
 - Controles para iniciar, pausar, retomar e abandonar.
-- Confirmacao antes de abandonar uma sessao.
+- Encerramento imediato de uma sessao em andamento.
 - Timer calculado por timestamp para resistir a troca de abas.
 - Mensagem tematica ao concluir uma sessao.
 
-### Chama animada
+### Chama visual
 
-A chama e o elemento visual central do Vesta. Ela muda de aparencia conforme o estado da sessao e o nivel de streak.
-
-Estados previstos:
-
-- `idle`: chama pequena e fraca.
-- `running`: chama viva, ritmica e com particulas ocasionais.
-- `paused`: chama com movimento reduzido.
-- `completed`: brilho curto e estabilizacao maior.
-- `abandoned`: reducao rapida e retorno ao estado inicial.
-- `high streak`: nucleo claro, bordas violetas ou azuladas.
-
-No MVP, a chama deve ser feita com SVG animado ou Canvas simples.
+A chama central usa a imagem `vesta-flame-symbol-redesign-512.png`, preservada
+da V1. O estado do timer e mostrado pelos controles e pelo texto da sessao;
+o progresso de streak aparece no indicador com os niveis Spark, Kindling,
+Flame, Torch e Bonfire.
 
 ### Tarefas vinculadas ao foco
 - Criar tarefas por campo de texto.
@@ -54,7 +46,7 @@ No MVP, a chama deve ser feita com SVG animado ou Canvas simples.
 - Sugerir marcar uma tarefa como concluida ao finalizar uma sessao vinculada.
 - Contar sessoes por tarefa.
 - Manter tarefas concluidas visiveis com menor destaque.
-- Excluir tarefas com confirmacao.
+- Excluir tarefas imediatamente, preservando o historico de sessoes ja salvo.
 
 Fora do MVP: subtarefas, labels, prioridades, prazos, anexos, comentarios e colaboracao.
 
@@ -71,15 +63,18 @@ Regras:
 - Se nenhum foco for concluido em um dia, o streak e zerado na proxima abertura do app.
 - O recorde `longestEver` e atualizado quando o streak atual supera o maior valor anterior.
 
-### Evolucao visual da chama
+### Niveis de streak
 
-| Nivel | Streak | Nome | Aparencia |
-| --- | --- | --- | --- |
-| 1 | 0 dias | Faisca | Micro chama tremula |
-| 2 | 1 a 3 dias | Broto | Chama pequena e estavel |
-| 3 | 4 a 7 dias | Chama | Chama media com particulas ocasionais |
-| 4 | 8 a 20 dias | Tocha | Chama alta com particulas continuas |
-| 5 | 21+ dias | Fogueira | Chama intensa com nucleo claro e faiscas densas |
+O indicador de streak usa os niveis abaixo. A imagem central da chama permanece
+a mesma imagem da V1.
+
+| Nivel | Streak | Nome |
+| --- | --- | --- |
+| 1 | 0 dias | Spark |
+| 2 | 1 a 3 dias | Kindling |
+| 3 | 4 a 7 dias | Flame |
+| 4 | 8 a 20 dias | Torch |
+| 5 | 21+ dias | Bonfire |
 
 ### Fogueira historica
 
@@ -139,6 +134,7 @@ No MVP, os dados ficam no navegador usando `localStorage`.
 | Sessoes | `vesta_sessions` | `id`, `date`, `durationMinutes`, `taskId`, `status`, `startedAt`, `endedAt` |
 | Streak | `vesta_streak` | `current`, `lastSessionDate`, `longestEver` |
 | Configuracoes | `vesta_settings` | `defaultDuration`, `soundEnabled` |
+| Sessao ativa | `vesta_active_session` | Estado da sessao em andamento ou pausada |
 
 Exemplo de sessao:
 
@@ -162,7 +158,7 @@ Exemplo de sessao:
 | Build | Vite |
 | Estilizacao | Tailwind CSS ou CSS Modules |
 | Animacoes | CSS keyframes e Framer Motion opcional |
-| Chama visual | SVG animado no MVP |
+| Chama visual | Imagem PNG preservada da V1 |
 | Som | Web Audio API |
 | Persistencia | localStorage |
 | Timer | Date.now() + setInterval |
@@ -201,7 +197,7 @@ O MVP sera considerado bem-sucedido se:
 
 - O usuario entender em menos de 10 segundos que deve iniciar uma sessao para alimentar a chama.
 - Completar uma sessao gerar sensacao clara de progresso.
-- A chama mudar de forma perceptivel entre estados.
+- O estado da sessao e o progresso de streak serem compreensiveis na interface.
 - O usuario conseguir criar tarefas e vincular sessoes sem friccao.
 - O streak for compreensivel sem explicacao longa.
 - A fogueira historica fizer o usuario querer voltar para ver o que construiu.
@@ -221,6 +217,7 @@ Uma stack futura possivel:
 
 ## Status
 
-MVP funcional implementado no frontend React. Timer, chama animada, tarefas,
-streak, fogueira de 14 dias, configuracoes e persistencia local estao
-disponiveis sem necessidade de conta ou backend.
+O modo Pomodoro do MVP esta funcional no frontend React: timer, tarefas,
+streak, fogueira de 14 dias, configuracoes e persistencia local funcionam sem
+conta ou backend. As abas Stopwatch e Timer ja fazem parte da navegacao e
+exibem uma pagina minima de progresso enquanto esses modos sao desenvolvidos.

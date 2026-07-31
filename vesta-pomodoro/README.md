@@ -1,121 +1,118 @@
 # Vesta
 
-Vesta é uma aplicação de foco gamificada construída com React e TypeScript.
-Cada sessão concluída alimenta uma chama, mantém o streak diário e adiciona uma
-brasa ao histórico visual dos últimos 14 dias.
+Vesta is a local-first intentional-focus app. It turns a task into a focused
+session, keeps a lightweight history, and makes daily consistency visible
+through a streak ritual.
 
-O MVP funciona inteiramente no navegador, sem conta e sem backend.
+## Current status
 
-## Funcionalidades
+The Pomodoro mode is the completed MVP flow. `Stopwatch` and `Timer` are
+available in the navigation but intentionally show a minimal **Page in
+progress** view until their dedicated experiences are implemented.
 
-### Sessões de foco
+The interface is currently in English. No account, backend, or network
+connection is required.
 
-- Presets de 15, 25, 45 e 60 minutos;
-- duração personalizada entre 5 e 120 minutos;
-- controles para iniciar, pausar, continuar e abandonar;
-- confirmação antes do abandono;
-- contagem baseada em timestamp, resistente à troca de abas;
-- restauração da sessão ativa ao recarregar a página;
-- mensagem temática e som opcional ao concluir.
+## MVP features
 
-### Tarefas
+### Focus sessions
 
-- Criação e seleção de tarefas;
-- sessões livres, sem tarefa vinculada;
-- contagem de sessões concluídas por tarefa;
-- sugestão de conclusão após uma sessão vinculada;
-- tarefas concluídas mantidas com menor destaque;
-- exclusão com confirmação e preservação do histórico.
+- Configurable focus duration from 5 to 120 minutes.
+- Start, pause, resume, and stop controls.
+- Immediate stop without a confirmation dialog.
+- Recovery of an active session after a page reload.
+- Completed and abandoned session history.
+- Optional link between the active session and a task.
 
-### Progresso
+### Tasks
 
-- Streak calculado por dias com pelo menos uma sessão concluída;
-- recorde pessoal de streak;
-- cinco níveis visuais: Faísca, Broto, Chama, Tocha e Fogueira;
-- chama SVG animada conforme o estado da sessão e o nível;
-- fogueira visual dos últimos 14 dias;
-- brasas acesas para conclusões, cinzas para abandonos e dias apagados;
-- detalhes de duração, tarefa, status e horário de cada sessão.
+- Create tasks with a concise title.
+- Rename, complete, reopen, or delete a task.
+- Deletion is immediate and retains any existing session history.
 
-### Preferências e persistência
+### Progress and visual identity
 
-- Tema claro e escuro;
-- duração padrão configurável;
-- som de conclusão configurável;
-- recuperação segura quando dados locais estão indisponíveis ou inválidos.
+- Daily streak calculated from completed sessions.
+- Fourteen-day campfire history.
+- Streak labels: Spark, Kindling, Flame, Torch, and Bonfire.
+- The central flame uses the original V1 image asset
+  (`vesta-flame-symbol-redesign-512.png`).
 
-## Tecnologias
+### Settings
 
-- React 19;
-- TypeScript;
-- Vite;
-- CSS Modules;
-- Context API;
-- Lucide React;
-- Web Audio API;
-- `localStorage`;
-- ESLint.
+- Default duration, focus presets, and audio preferences.
+- Start, completion, and tick sound controls.
+- Light, dark, and system theme choices.
+- Reset limited to application data.
 
-## Como executar
+## Local data
 
-É necessário ter o Node.js e o npm instalados.
+All data stays in browser `localStorage`:
+
+| Key | Purpose |
+| --- | --- |
+| `vesta_tasks` | Tasks and completion status |
+| `vesta_sessions` | Completed and abandoned sessions |
+| `vesta_streak` | Daily streak progress |
+| `vesta_settings` | Experience settings |
+| `vesta_active_session` | Session currently in progress |
+| `theme` | Selected visual theme |
+
+## Technology
+
+- React 19
+- TypeScript
+- Vite
+- CSS Modules
+- Context API
+- Lucide React
+- Web Audio API
+- ESLint
+
+## Run locally
+
+From `vesta-pomodoro`:
 
 ```powershell
-cd vesta-pomodoro
 npm.cmd install
 npm.cmd run dev
 ```
 
-O Vite informará o endereço local da aplicação, normalmente
-`http://localhost:5173`.
+Vite normally serves the app at `http://localhost:5173`.
 
 ## Scripts
 
-| Comando | Descrição |
+| Command | Description |
 | --- | --- |
-| `npm run dev` | Inicia o servidor de desenvolvimento |
-| `npm run build` | Valida o TypeScript e gera a versão de produção |
-| `npm run lint` | Executa a análise estática com ESLint |
-| `npm run preview` | Abre localmente a versão gerada |
+| `npm.cmd run dev` | Starts the development server |
+| `npm.cmd run build` | Validates TypeScript and builds the production app |
+| `npm.cmd run lint` | Runs ESLint |
+| `npm.cmd run preview` | Serves the production build locally |
 
-## Estrutura principal
+## Project structure
 
 ```text
 src/
-├── components/          # Timer, chama, tarefas, histórico e configurações
-├── context/             # Estado global e regras das sessões
-├── Models/              # Tipos de tarefas, sessões e estado
-├── pages/               # Composição das telas
-├── templates/           # Estrutura compartilhada da interface
-├── theme/               # Temas claro e escuro
-└── utils/               # Datas, níveis, storage, som e formatação
+|-- components/          # Timer, flame, tasks, history, and settings
+|-- context/             # Shared state and session rules
+|-- Models/              # Domain types
+|-- pages/               # Screen composition and mode views
+|-- templates/           # Shared interface structure
+|-- theme/               # Light and dark themes
+`-- utils/               # Dates, streaks, storage, sound, and formatting
 ```
 
-O estado do MVP permanece centralizado no `TaskContextProvider`. Componentes
-consomem ações do contexto para evitar regras de negócio duplicadas na
-interface.
+The MVP state remains centralized in `TaskContextProvider` so interface
+components can reuse the same business rules.
 
-## Dados locais
+## Verification
 
-| Chave | Conteúdo |
-| --- | --- |
-| `vesta_tasks` | Tarefas e contagem de sessões |
-| `vesta_sessions` | Sessões concluídas e abandonadas |
-| `vesta_streak` | Streak atual, última data e recorde |
-| `vesta_settings` | Duração padrão e preferência de som |
-| `vesta_active_session` | Sessão em andamento ou pausada |
-| `theme` | Tema visual escolhido |
-
-Excluir os dados do site no navegador reinicia o progresso local.
-
-## Validação
-
-Antes de uma entrega, execute:
+Before delivering a code change, run:
 
 ```powershell
 npm.cmd run lint
 npm.cmd run build
 ```
 
-O escopo completo e as regras do produto estão documentados no
-[`README.md`](../README.md) da raiz do repositório.
+The complete product scope is documented in the
+[root README](../README.md).
