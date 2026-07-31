@@ -221,4 +221,6 @@ Uma stack futura possivel:
 
 ## Status
 
-Projeto em fase de especificacao e desenvolvimento do MVP.
+MVP funcional implementado no frontend React. Timer, chama animada, tarefas,
+streak, fogueira de 14 dias, configuracoes e persistencia local estao
+disponiveis sem necessidade de conta ou backend.
