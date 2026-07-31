@@ -174,7 +174,10 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
                       )}
                     </span>
                     <span className={styles.sessionDescription}>
-                      <strong>{task?.text ?? 'Foco livre'}</strong>
+                      <strong>
+                        {task?.text ??
+                          (session.taskId ? 'Tarefa removida' : 'Foco livre')}
+                      </strong>
                       <small>
                         {isCompleted ? 'Concluída' : 'Abandonada'} ·{' '}
                         {formatSessionTime(session.startedAt)}

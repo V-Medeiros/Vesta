@@ -1,9 +1,9 @@
+import type { SessionModel } from '../Models/SessionModel';
 import type {
   ActiveSessionModel,
   SettingsModel,
   StreakModel,
 } from '../Models/TaskStateModel';
-import type { SessionModel } from '../Models/SessionModel';
 import type { TaskModel } from '../Models/TaskModel';
 
 export const STORAGE_KEYS = {
@@ -14,38 +14,133 @@ export const STORAGE_KEYS = {
   activeSession: 'vesta_active_session',
 } as const;
 
-function readStorage<T>(key: string, fallback: T): T {
+function readStorage(key: string): unknown {
   try {
     const value = localStorage.getItem(key);
-    return value ? (JSON.parse(value) as T) : fallback;
+    return value ? (JSON.parse(value) as unknown) : null;
   } catch {
-    return fallback;
+    return null;
   }
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function isTask(value: unknown): value is TaskModel {
+  return (
+    isRecord(value) &&
+    typeof value.id === 'string' &&
+    typeof value.text === 'string' &&
+    typeof value.completed === 'boolean' &&
+    isFiniteNumber(value.sessionsCount) &&
+    typeof value.createdAt === 'string' &&
+    typeof value.updatedAt === 'string'
+  );
+}
+
+function isSession(value: unknown): value is SessionModel {
+  return (
+    isRecord(value) &&
+    typeof value.id === 'string' &&
+    typeof value.date === 'string' &&
+    isFiniteNumber(value.durationMinutes) &&
+    (typeof value.taskId === 'string' || value.taskId === null) &&
+    (value.status === 'completed' || value.status === 'abandoned') &&
+    typeof value.startedAt === 'string' &&
+    typeof value.endedAt === 'string'
+  );
+}
+
 export function loadTasks() {
-  const tasks = readStorage<unknown>(STORAGE_KEYS.tasks, []);
-  return Array.isArray(tasks) ? (tasks as TaskModel[]) : [];
+  const tasks = readStorage(STORAGE_KEYS.tasks);
+  return Array.isArray(tasks) ? tasks.filter(isTask) : [];
 }
 
 export function loadSessions() {
-  const sessions = readStorage<unknown>(STORAGE_KEYS.sessions, []);
-  return Array.isArray(sessions) ? (sessions as SessionModel[]) : [];
+  const sessions = readStorage(STORAGE_KEYS.sessions);
+  return Array.isArray(sessions) ? sessions.filter(isSession) : [];
 }
 
-export function loadStreak(fallback: StreakModel) {
-  return readStorage<StreakModel>(STORAGE_KEYS.streak, fallback);
+export function loadStreak(fallback: StreakModel): StreakModel {
+  const streak = readStorage(STORAGE_KEYS.streak);
+
+  if (
+    !isRecord(streak) ||
+    !isFiniteNumber(streak.current) ||
+    !isFiniteNumber(streak.longestEver) ||
+    !(
+      typeof streak.lastSessionDate === 'string' ||
+      streak.lastSessionDate === null
+    )
+  ) {
+    return fallback;
+  }
+
+  return {
+    current: Math.max(0, Math.floor(streak.current)),
+    lastSessionDate: streak.lastSessionDate,
+    longestEver: Math.max(0, Math.floor(streak.longestEver)),
+  };
 }
 
-export function loadSettings(fallback: SettingsModel) {
-  return readStorage<SettingsModel>(STORAGE_KEYS.settings, fallback);
+export function loadSettings(fallback: SettingsModel): SettingsModel {
+  const settings = readStorage(STORAGE_KEYS.settings);
+  if (!isRecord(settings)) return fallback;
+
+  const defaultDuration = isFiniteNumber(settings.defaultDuration)
+    ? Math.min(120, Math.max(5, Math.round(settings.defaultDuration)))
+    : fallback.defaultDuration;
+
+  return {
+    defaultDuration,
+    soundEnabled:
+      typeof settings.soundEnabled === 'boolean'
+        ? settings.soundEnabled
+        : fallback.soundEnabled,
+  };
 }
 
-export function loadActiveSession() {
-  return readStorage<ActiveSessionModel | null>(
-    STORAGE_KEYS.activeSession,
-    null,
+export function loadActiveSession(): ActiveSessionModel | null {
+  const session = readStorage(STORAGE_KEYS.activeSession);
+
+  if (
+    !isRecord(session) ||
+    typeof session.id !== 'string' ||
+    !isFiniteNumber(session.durationMinutes) ||
+    !(typeof session.taskId === 'string' || session.taskId === null) ||
+    !(session.status === 'running' || session.status === 'paused') ||
+    typeof session.startedAt !== 'string' ||
+    !(isFiniteNumber(session.endsAt) || session.endsAt === null)
+  ) {
+    return null;
+  }
+
+  const durationMinutes = Math.min(
+    120,
+    Math.max(5, Math.round(session.durationMinutes)),
   );
+  const pausedSecondsRemaining = isFiniteNumber(
+    session.pausedSecondsRemaining,
+  )
+    ? Math.max(1, Math.round(session.pausedSecondsRemaining))
+    : session.status === 'paused'
+      ? durationMinutes * 60
+      : null;
+
+  return {
+    id: session.id,
+    durationMinutes,
+    taskId: session.taskId,
+    status: session.status,
+    startedAt: session.startedAt,
+    endsAt: session.endsAt,
+    pausedSecondsRemaining,
+  };
 }
 
 export function writeStorage(key: string, value: unknown) {
