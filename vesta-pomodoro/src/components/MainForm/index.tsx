@@ -16,6 +16,7 @@ export function MainForm() {
     abandonSession,
     pauseSession,
     resumeSession,
+    selectTask,
     setDuration,
     startSession,
   } = useTaskContext();
@@ -33,6 +34,24 @@ export function MainForm() {
 
   return (
     <div className={styles.controls}>
+      <label className={styles.taskSelector}>
+        <span>Tarefa vinculada</span>
+        <select
+          value={ContextState.selectedTaskId ?? ''}
+          disabled={isActive}
+          onChange={(event) => selectTask(event.target.value || null)}
+        >
+          <option value=''>Foco livre — sem tarefa</option>
+          {ContextState.tasks
+            .filter((task) => !task.completed)
+            .map((task) => (
+              <option key={task.id} value={task.id}>
+                {task.text}
+              </option>
+            ))}
+        </select>
+      </label>
+
       <fieldset className={styles.durationFieldset} disabled={isActive}>
         <legend>Duração da sessão</legend>
         <div className={styles.presets}>

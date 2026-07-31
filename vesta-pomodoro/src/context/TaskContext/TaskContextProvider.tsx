@@ -322,25 +322,33 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
 
   const toggleTask = useCallback((taskId: string) => {
     const updatedAt = new Date().toISOString();
-    SetState((state) => ({
-      ...state,
-      selectedTaskId:
-        state.selectedTaskId === taskId ? null : state.selectedTaskId,
-      tasks: state.tasks.map((task) =>
-        task.id === taskId
-          ? { ...task, completed: !task.completed, updatedAt }
-          : task,
-      ),
-    }));
+    SetState((state) => {
+      if (state.activeSession?.taskId === taskId) return state;
+
+      return {
+        ...state,
+        selectedTaskId:
+          state.selectedTaskId === taskId ? null : state.selectedTaskId,
+        tasks: state.tasks.map((task) =>
+          task.id === taskId
+            ? { ...task, completed: !task.completed, updatedAt }
+            : task,
+        ),
+      };
+    });
   }, []);
 
   const deleteTask = useCallback((taskId: string) => {
-    SetState((state) => ({
-      ...state,
-      selectedTaskId:
-        state.selectedTaskId === taskId ? null : state.selectedTaskId,
-      tasks: state.tasks.filter((task) => task.id !== taskId),
-    }));
+    SetState((state) => {
+      if (state.activeSession?.taskId === taskId) return state;
+
+      return {
+        ...state,
+        selectedTaskId:
+          state.selectedTaskId === taskId ? null : state.selectedTaskId,
+        tasks: state.tasks.filter((task) => task.id !== taskId),
+      };
+    });
   }, []);
 
   const updateSettings = useCallback((settings: Partial<SettingsModel>) => {
