@@ -24,14 +24,6 @@ export function MainForm() {
     ContextState.sessionStatus === 'running' ||
     ContextState.sessionStatus === 'paused';
 
-  function handleAbandon() {
-    const confirmed = window.confirm(
-      'Stop this session? This time will not count toward your streak.',
-    );
-
-    if (confirmed) abandonSession();
-  }
-
   return (
     <div className={styles.controls}>
       <label className={styles.taskSelector}>
@@ -127,7 +119,7 @@ export function MainForm() {
             type='button'
             icon={<SquareIcon />}
             color='danger'
-            onClick={handleAbandon}
+            onClick={abandonSession}
           >
             Stop
           </DefaultButton>
