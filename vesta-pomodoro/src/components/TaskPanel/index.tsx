@@ -33,14 +33,6 @@ export function TaskPanel() {
     setError('');
   }
 
-  function handleDelete(taskId: string, taskTextToDelete: string) {
-    const confirmed = window.confirm(
-      `Delete “${taskTextToDelete}”? Its session history will be preserved.`,
-    );
-
-    if (confirmed) deleteTask(taskId);
-  }
-
   return (
     <aside className={styles.panel} aria-labelledby='tasks-title'>
       <div className={styles.heading}>
@@ -130,7 +122,7 @@ export function TaskPanel() {
                   className={styles.delete}
                   type='button'
                   disabled={isSessionTask}
-                  onClick={() => handleDelete(task.id, task.text)}
+                  onClick={() => deleteTask(task.id)}
                   aria-label={`Delete ${task.text}`}
                 >
                   <Trash2Icon />
