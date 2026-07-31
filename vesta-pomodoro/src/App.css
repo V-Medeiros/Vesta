@@ -1,10 +1,23 @@
-.app {
+.app-shell {
   width: 100%;
   max-width: 1440px;
   min-width: 0;
+  display: grid;
+}
+
+.app-shell-with-sidebar {
+  max-width: 1600px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 320px);
+  align-items: stretch;
+  gap: 20px;
+}
+
+.app {
+  width: 100%;
+  min-width: 0;
   min-height: calc(100svh - 32px);
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto minmax(0, 1fr);
   padding: 20px 36px 24px;
   text-align: center;
   background: var(--surface);
@@ -94,21 +107,32 @@
 
 .app-main {
   min-height: 0;
-  justify-content: center;
-  padding-top: 34px;
+  justify-content: flex-start;
+  padding-top: clamp(28px, 5svh, 54px);
 }
 
 .home-layout {
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
-  align-items: center;
-  gap: clamp(28px, 5vw, 72px);
+  max-width: 650px;
+  margin-inline: auto;
 }
 
 .timer-area {
   width: 100%;
-  gap: 20px;
+}
+
+.timer-readout {
+  display: grid;
+  justify-items: center;
+  gap: 13px;
+  margin-top: 28px;
+}
+
+.session-controls {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  margin-top: 64px;
 }
 
 .session-title {
@@ -118,12 +142,11 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-top: 2rem;
 }
 
 .active-task-label {
   max-width: min(90%, 520px);
-  margin: -10px 0 0;
+  margin: -4px 0;
   overflow: hidden;
   color: var(--muted);
   font-size: 0.88rem;
@@ -144,6 +167,7 @@
   border-radius: 8px;
   font-size: 0.9rem;
   text-align: left;
+  margin-top: 22px;
 }
 
 .session-feedback button {
@@ -163,6 +187,8 @@
 }
 
 .app-footer {
+  align-self: start;
+  margin-top: 36px;
   color: var(--text-subtle);
   font-size: 0.9rem;
   font-weight: 600;
@@ -215,8 +241,13 @@
     padding-block: 34px;
   }
 
-  .home-layout {
+}
+
+@media (max-width: 1160px) {
+  .app-shell-with-sidebar {
+    max-width: 900px;
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
@@ -232,10 +263,6 @@
 
   .mode-button {
     font-size: 0.84rem;
-  }
-
-  .timer-area {
-    gap: 16px;
   }
 
   .session-feedback {
@@ -257,14 +284,20 @@
     padding-top: clamp(8px, 2svh, 20px);
   }
 
-  .timer-area {
-    gap: clamp(8px, 1.5svh, 14px);
+  .timer-readout {
+    margin-top: clamp(14px, 2.5svh, 24px);
   }
 
-  .session-title {
-    margin-top: clamp(0px, 1svh, 8px);
+  .session-controls {
+    margin-top: clamp(32px, 4.5svh, 48px);
   }
 
+}
+
+@media (max-width: 850px) {
+  .app-shell-with-sidebar {
+    gap: 0;
+  }
 }
 
 @media (max-height: 600px) {

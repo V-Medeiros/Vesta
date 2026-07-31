@@ -14,6 +14,9 @@ export function TaskPanel() {
   const [taskText, setTaskText] = useState('');
   const [error, setError] = useState('');
   const activeTaskId = ContextState.activeSession?.taskId ?? null;
+  const openTaskCount = ContextState.tasks.filter(
+    (task) => !task.completed,
+  ).length;
   const sortedTasks = [...ContextState.tasks].sort(
     (firstTask, secondTask) =>
       Number(firstTask.completed) - Number(secondTask.completed),
@@ -40,9 +43,7 @@ export function TaskPanel() {
           <span className={styles.eyebrow}>Next sparks</span>
           <h2 id='tasks-title'>Tasks</h2>
         </div>
-        <span className={styles.count}>
-          {ContextState.tasks.filter((task) => !task.completed).length} open
-        </span>
+        <span className={styles.count}>{openTaskCount} open</span>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -53,11 +54,11 @@ export function TaskPanel() {
             value={taskText}
             maxLength={120}
             placeholder='What drives you today?'
+            aria-describedby={error ? 'task-error' : undefined}
             onChange={(event) => {
               setTaskText(event.target.value);
               if (error) setError('');
             }}
-            aria-describedby={error ? 'task-error' : undefined}
           />
         </label>
         <button type='submit' aria-label='Add task'>
@@ -74,7 +75,7 @@ export function TaskPanel() {
       {sortedTasks.length === 0 ? (
         <div className={styles.emptyState}>
           <span className={styles.emptySpark} aria-hidden='true' />
-          <p>Create a task or start a free focus session.</p>
+          <p>Add a task, then select it for your next focus session.</p>
         </div>
       ) : (
         <ul className={styles.list}>

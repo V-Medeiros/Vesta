@@ -26,9 +26,10 @@ export function MainForm() {
 
   return (
     <div className={styles.controls}>
-      <label className={styles.taskSelector}>
-        <span>Session focus</span>
+      <div className={styles.taskSelector}>
         <select
+          id='session-task'
+          aria-label='Session task'
           value={ContextState.selectedTaskId ?? ''}
           disabled={isActive}
           onChange={(event) => selectTask(event.target.value || null)}
@@ -42,7 +43,7 @@ export function MainForm() {
               </option>
             ))}
         </select>
-      </label>
+      </div>
 
       <fieldset className={styles.durationFieldset} disabled={isActive}>
         <legend>Session duration</legend>

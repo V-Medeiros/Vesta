@@ -47,6 +47,7 @@ export function Home() {
 
   return (
     <MainTemplate
+      aside={activeMode === 'pomodoro' ? <TaskPanel /> : undefined}
       activeMode={activeMode}
       onModeChange={setActiveMode}
       onOpenHistory={() => setIsHistoryOpen(true)}
@@ -56,13 +57,15 @@ export function Home() {
         <div className='home-layout'>
           <section className='timer-area' aria-labelledby='session-title'>
             <FocusFlame />
-            <h2 className='session-title' id='session-title'>
-              Focus
-            </h2>
-            {selectedTask && (
-              <p className='active-task-label'>{selectedTask.text}</p>
-            )}
-            <CountDown />
+            <div className='timer-readout'>
+              <h2 className='session-title' id='session-title'>
+                Focus
+              </h2>
+              {selectedTask && (
+                <p className='active-task-label'>{selectedTask.text}</p>
+              )}
+              <CountDown />
+            </div>
 
             {ContextState.feedbackMessage && (
               <div className='session-feedback' role='status'>
@@ -84,10 +87,10 @@ export function Home() {
               </div>
             )}
 
-            <MainForm />
+            <div className='session-controls'>
+              <MainForm />
+            </div>
           </section>
-
-          <TaskPanel />
         </div>
       ) : (
         <ModePlaceholder
