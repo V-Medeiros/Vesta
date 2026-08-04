@@ -178,6 +178,19 @@
   }
 }
 
+.timer-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.timer-feedback {
+  min-height: 1.25rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
 /*
  * A responsividade vertical precisa ser tratada separadamente da largura.
  * O clamp do contador reduz apenas a fonte; a chama, os espaços e o formulário
